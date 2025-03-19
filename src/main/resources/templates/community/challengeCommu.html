@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<table id="TodayChallengeArea">
+		<tr>
+			<td align="center">
+            	<table id="TodayChallengeTbl" border="1">
+            		<tr>
+            			<td id="TodayChallengeTitleTd" colspan="2" align="center">오늘의 도전요리</td>
+            		</tr>
+                	<tr>
+                    	<td align="center" rowspan="2" id="TodayChallengeImgTd">
+                        	<img th:src="${todayRcp.rcpMainphoto}" alt="Recipe Image">
+	                    </td>
+    	                <td id="TodayChallengeNameTd" align="center" th:text="${todayRcp.rcpName + ' (' + todayRcp.rcpCategory + ')' }"></td>
+        	        </tr>
+                	<tr th:each="stRcp : ${stRcp}" id="TodayChallengePartsTd">
+                    	<td th:utext="${'재료 : ' + stRcp.rcpParts}"></td>
+                	</tr>
+            	</table>
+            	<details>
+                	<summary id="TodayChallengeSummaryToggleBtn">
+                		&nbsp;레시피 자세히 보기
+                	</summary>
+                	<table id="TodayChallengeSummaryTbl">
+        				<tr th:each="i : ${#numbers.sequence(1, 20)}" 
+            				th:if="${rcpMulFields['rcpMul' + ('00' + i).substring(i.toString().length())] != '' 
+                     		or rcpMulFields['rcpSubimg' + ('00' + i).substring(i.toString().length())] != ''}">
+            				<td class="TodayChallengeSummaryTextTd">
+                				<div class="recipe-text-wrapper">
+                    				<p th:if="${rcpMulFields['rcpMul' + ('00' + i).substring(i.toString().length())] != ''}"
+                       					th:text="${rcpMulFields['rcpMul' + ('00' + i).substring(i.toString().length())]}"></p>
+                				</div>
+            				</td>
+            				<td class="TodayChallengeSummaryImgTd">
+            					<img th:if="${rcpMulFields['rcpSubimg' + ('00' + i).substring(i.toString().length())] != ''}"
+                         			th:src="${rcpMulFields['rcpSubimg' + ('00' + i).substring(i.toString().length())]}"
+                         			alt="조리 과정 이미지"/>
+            				</td>
+        				</tr>
+					</table>
+            	</details>
+        	</td>
+    	</tr>
+	</table>
+	<div align="center" class="challengeCommuPostTitle">
+		도전요리 후기
+	</div>
+	<table id="challengeCommuSearchArea">
+		<tr>
+			<td align="center">
+   				<form action="challenge.community.search">
+      				<table id="challengeCommuSearchTbl">
+         				<tr>
+            				<td align="left" id="challengeCommuSearchTd">&nbsp;
+            					<input id="challengeCommuSearchInput" name="search" placeholder="작성자ID or 글 제목">
+            					<input id="challengeCommuSearchImgInput" type="image" src="img/icon/searchButton.png">
+            				</td>
+         				</tr>
+      				</table>
+   				</form>
+   			</td>
+   			<td align="center" th:if="${session.loginMember != null}">
+   				<button id="challengePostRegGo">업로드하기</button>
+   			</td>
+   		</tr>
+   	</table>
+	<table id="challengeCommuPostArea">
+		<tr>
+			<td align="center">
+				<table class="postTbl" id="labelTbl">
+					<tr>
+						<td class="postTitle">제목</td>
+						<td class="writerId">작성자</td>
+						<td class="date">날짜</td>
+						<td class="like">추천 수</td>
+					</tr>
+				</table>			
+			</td>
+		</tr>
+		<tr>
+			<td align="center">
+				<table th:each="ccp : ${posts}" class="postTbl" th:onclick="challengeCommunityDetailGo([[${ccp.no}]], 2, [[${curPage}]]);">
+    				<tr>
+			        	<td class="postTitle" th:text="${ccp.title}" ></td>
+			        	<td class="writerId" th:text="${ccp.writer.nick}"></td>
+        			 	<td class="date" th:text="${#dates.format(ccp.date, 'yyyy-MM-dd HH:mm')}"></td>
+         				<td class="like" th:text="${ccp.like}"></td>
+      				</tr>
+   				</table>		
+			</td>
+		</tr>
+	</table>
+	<table id="challengePostPageArea">
+		<tr>
+			<td align="center">
+				<table class="challengePostPage">
+					<tr th:if="${pageCount != null}">
+						<td>
+							<a th:if="${curPageGroup > 1}" th:onclick="communityPageChange([[${(curPageGroup - 1) * 5}]]);" class="pageGroup">
+								이전 
+							</a> 
+							<a th:each="num: ${#numbers.sequence((curPageGroup - 1) * 5 + 1, (curPageGroup * 5) > pageCount ? pageCount : (curPageGroup * 5))}"
+								th:text="${num}" th:onclick="communityPageChange([[${num}]]);"></a>
+							<a th:if="${curPageGroup * 5 < pageCount}" th:onclick="communityPageChange([[${(curPageGroup * 5) + 1}]]);" class="pageGroup">
+								다음
+							</a>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	<div id="challengeCommunityWriteArea" class="challengeCommuityPopupArea">
+   		<form id="challengeCommuRegForm" method="post" enctype="multipart/form-data">
+            <input type="hidden" value="2" name="type">
+   			<input type="hidden" th:value="${token}" name="token">
+   			<input type="hidden" th:value="${todayRcp.rcpId}" name="rcpno">
+      		<div class="commuPostPopup">
+      			<div id="topField" class="field">
+      				<h2>후기 등록하기</h2>
+      				<div class="rightAlign">
+      					<button id="challengeclosePopup" type="button">
+	          				<img id="challengeCommuRegCloseBtn" src="img/icon/closeButton.png">
+      					</button>
+      				</div>
+       			</div>
+       			<div id="titleField" class="Field">
+       				<input name="title" placeholder="제목" maxlength="80" autocomplete="off">
+       			</div>
+       			<div class="textField">
+       				<textarea name="text" placeholder="내용" maxlength="800"></textarea>
+       			</div>
+       			<div class="fileField">
+       				<div align="center">
+	       				<table id="fileFieldTbl">
+						    <tr>
+						        <td>
+						            <label class="file-label">
+						                파일 선택
+						                <input name="imgTemp2" type="file" accept="image/*" onchange="previewImage(this)">
+						            </label>
+						            <img class="preview-img">
+						        </td>
+						        <td>
+						            <label class="file-label">
+						                파일 선택
+						                <input name="imgTemp3" type="file" accept="image/*" onchange="previewImage(this)">
+						            </label>
+						            <img class="preview-img">
+						        </td>
+						        <td>
+						            <label class="file-label">
+						                파일 선택
+						                <input name="imgTemp4" type="file" accept="image/*" onchange="previewImage(this)">
+						            </label>
+						            <img class="preview-img">
+						        </td>
+						        <td>
+						            <label class="file-label">
+						                파일 선택
+						                <input name="imgTemp5" type="file" accept="image/*" onchange="previewImage(this)">
+						            </label>
+						            <img class="preview-img">
+						        </td>
+						        <td>
+						            <label class="file-label">
+						                파일 선택
+						                <input name="imgTemp6" type="file" accept="image/*" onchange="previewImage(this)">
+						            </label>
+						            <img class="preview-img">
+						        </td>
+						    </tr>
+						</table>
+       				</div>
+       			</div>
+        		<div>
+        			<button type="button" id="challengeCommuRegFormBtn">작성하기</button>
+       			</div>
+       		</div>
+   		</form>
+	</div>
+</body>
+</html>

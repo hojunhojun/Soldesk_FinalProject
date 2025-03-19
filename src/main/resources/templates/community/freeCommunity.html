@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div id="freeCommuArea">
+		<div id="basicSetting">
+			<div id="searchArea">
+				<form action="free.community.search">
+					<div id="searchForm">
+						<input name="search" placeholder="&nbsp;검색어를 입력하세요" autocomplete="off">
+						<button>
+							<img alt="" src="img/icon/searchButton.png">
+						</button>
+					</div>
+				</form>
+			</div>
+			<div id="cateArea">
+				<table>
+					<tr>
+						<td id="label">카테고리 별 검색
+							<button onclick="clearCate();">모든 글 보기</button>
+						</td>
+						<td>
+							<button onclick="getFreeCommuCatePost('일반');">일반</button>
+							<button onclick="getFreeCommuCatePost('인증');">인증</button>
+							<button onclick="getFreeCommuCatePost('레시피추천');">레시피 추천</button>
+							<button onclick="getFreeCommuCatePost('다이어트');">다이어트</button>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div class="rightAlien" th:if="${session.loginMember != null}">
+			<button id="freePostRegGo">업로드하기</button>
+		</div>
+		<div id="freeCommuPostArea">
+			<table class="postTbl" id="labelTbl">
+				<tr>
+					<td class="cate">카테고리</td>
+					<td class="postTitle">제목</td>
+					<td class="writerId">작성자</td>
+					<td class="date">날짜</td>
+					<td class="like">추천 수</td>
+				</tr>
+			</table>
+			<table th:each="fcp : ${freeCommuPosts}" class="postTbl"
+				th:onclick="freeCommuPostDetail([[${fcp.no}]], [[${curPage}]]);">
+				<tr>
+					<td class="cate">[[${fcp.cate}]]</td>
+					<td class="postTitle" align="left">[[${fcp.title}]]</td>
+					<td class="writerId">[[${fcp.writer.nick}]]</td>
+					<td class="date" th:text="${#dates.format(fcp.date, 'yyyy.MM.dd')}"></td>
+					<td class="like">[[${fcp.like}]]</td>
+				</tr>
+			</table>
+		</div>
+		<div id="freePostPage">
+			<table>
+				<tr th:if="${pageCount != null}">
+					<td>
+						<a th:if="${curPageGroup > 1}" th:onclick="freeCommunityPageChange([[${(curPageGroup - 1) * 10}]]);" class="pageGroup">
+							이전 
+						</a> 
+						<a th:each="num: ${#numbers.sequence((curPageGroup - 1) * 10 + 1, (curPageGroup * 10) > pageCount ? pageCount : (curPageGroup * 10))}"
+								th:text="${num}" th:onclick="freeCommunityPageChange([[${num}]]);"></a>
+						<a th:if="${curPageGroup * 10 < pageCount}" th:onclick="freeCommunityPageChange([[${(curPageGroup * 10) + 1}]]);" class="pageGroup">
+							다음
+						</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div id="freePostRegArea" class="freePostPopupArea">
+			<form method="post" enctype="multipart/form-data"
+				id="freeCommuRegForm">
+				<input name="token" th:value="${token}" type="hidden"> <input
+					type="hidden" value="1" name="type">
+				<div id="freePostPopup">
+					<div id="topSection" class="section">
+						<h2>글 등록</h2>
+						<div class="rightAlien">
+							<button id="closePopup" type="button">
+								<img alt="" src="img/icon/closeButton.png">
+							</button>
+						</div>
+					</div>
+					<div id="titleSection" class="section">
+						<div>
+							<div class="label">카테고리</div>
+							<select name="cate">
+								<option value="일반">일반</option>
+								<option value="인증">인증</option>
+								<option value="레시피추천">레시피 추천</option>
+								<option value="다이어트">다이어트</option>
+							</select>
+						</div>
+						<input name="title" placeholder="제목" maxlength="80" autocomplete="off">
+					</div>
+
+					<div id="textSection">
+						<textarea name="text" maxlength="800" placeholder="내용"></textarea>
+					</div>
+					<div id="fileSection">
+						<button type="button">파일 추가하기</button><p>
+						<table id="fileTbl">
+							<tr>
+								<td class="fileTd"><input type="file" name="file1" id="file1" class="freeFileHide nullFileInput"></td>
+								<td class="fileTd"><input type="file" name="file2" id="file2" class="freeFileHide nullFileInput"></td>
+								<td class="fileTd"><input type="file" name="file3" id="file3" class="freeFileHide nullFileInput"></td>
+								<td class="fileTd"><input type="file" name="file4" id="file4" class="freeFileHide nullFileInput"></td>
+								<td class="fileTd"><input type="file" name="file5" id="file5" class="freeFileHide nullFileInput"></td>
+							</tr>
+						</table>
+					</div>
+					<div>
+						<button type="button" id="freeCommuPostregBtn">등록</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

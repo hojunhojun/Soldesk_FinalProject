@@ -1,0 +1,186 @@
+@charset "UTF-8";
+
+#siteContentArea #mainImgArea {
+	display: flex;
+	width: 100%;
+	height: 50%;
+}
+
+#mainImgArea #sliderArea {
+  	width: 25%;
+  	height: 100%;
+  	text-align: center;
+}
+#sliderArea #menuNameLabel{
+	width: 100%;
+	height: 20%;
+	font-family: 'm';
+	font-size: 30px;
+	padding-bottom: 10px;
+}
+
+#mainImgArea #sliderArea .bxslider {
+  	width: 100%;
+  	height: 300px; 
+  	z-index: 10 !important;
+}
+
+#sliderArea .bxslider div {
+  	width: 100%;  
+  	height: 100%; 
+  	overflow: hidden;
+}
+
+#sliderArea .bxslider .homeRecipeImg {
+ 	width: 100%;  
+  	height: 80%; 
+  	object-fit: cover;
+}
+#sliderArea .bxslider .homeRecipeTitle {
+ 	width: 100%;  
+  	height: 20%; 
+}
+
+#mainImgArea #mainImg {
+	width: 75%;
+	height: 100%;
+	text-align: right;
+}
+
+#mainImgArea #mainImg img {
+	width: 95%;
+	height: 350px;
+}
+
+#siteContentArea #mainContentArea {
+	width: 100%;
+	padding-top: 30px; 
+	font-family : "m";
+	display: flex;
+	font-family: "m";
+	padding-bottom: 100px;
+}
+
+#mainContentArea #freeCommuArea {
+	width: 50%;
+	height: 600px;
+	text-align: left;
+}
+
+#mainContentArea #Area2 {
+	width: 50%;
+	height: 600px;
+}
+
+#mainContentArea #ChallengeCommuArea {
+	width: 100%;
+	height: 400px;
+}
+
+#mainContentArea #foodGuideCommuArea {
+	width: 100%;
+	height: 200px;
+}
+
+#freeCommuArea table {
+	width: 97%;
+}
+
+#Area2 #ChallengeCommuArea #ChallengeCommuAreaTbl {
+	width: 100%;
+}
+
+#foodGuideCommuArea #mainFreeTop {
+	width: 100%;
+}
+
+#mainContentArea .line {
+	width: 90%;
+	border-bottom: #9fa1a0 solid 1px;
+}
+
+#mainContentArea a{
+	font-family: "m";
+	color: grey;
+}
+
+#Area2 .MainCommuPosts {
+	width: 99%;
+	display: flex;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+#Area2 .MainCommuPost {
+	width: 33%;
+	text-align: center;
+}
+
+.MainCommuPost .imgDiv{
+	width: 80%;
+	height: 70%;
+	overflow:hidden;
+	margin: 0 auto;
+}
+.MainCommuPost img{
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+.MainCommuPost .titleDiv{
+	padding-top: 10px;
+	font-family: 'm';
+	font-size: 15px;
+}
+
+#foodGuideCommuArea #mainFreeTop .MainFreePosts{
+	width: 100%;
+	border-bottom: black solid 1px;
+}
+#mainFreeTop .MainFreePosts .MainFreePost{
+	width: 100%;
+	height: 40px;
+}
+.MainFreePosts .MainFreePost .title{
+	width: 70%;
+}
+.MainFreePosts .MainFreePost .writer{
+	width: 20%;
+	text-align: center;
+}
+.MainFreePosts .MainFreePost .date{
+	width: 10%;
+	text-align: right;
+}
+
+#ChallengeCommuAreaTbl #todayRecipeTbl{
+	width: 100%;
+	height: 155px;
+}
+#ChallengeCommuAreaTbl #todayRecipeTbl table{
+	margin-top:10px;
+	border: black solid 2px;
+	border-radius: 10px;
+}
+#ChallengeCommuAreaTbl #todayRecipeTbl #imgTd{
+	width: 40%;
+	height: 100%;
+}
+#ChallengeCommuAreaTbl #todayRecipeTbl #imgTd div{
+	width: 100%;
+	height: 180px;
+	overflow: hidden;
+	margin: 0 auto;
+}
+#ChallengeCommuAreaTbl #todayRecipeTbl #imgTd img{
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+#ChallengeCommuAreaTbl #todayRecipeTbl #title{
+	width: 60%;
+	font-size: 25px;
+}
+#ChallengeCommuAreaTbl #todayRecipeTbl #category{
+	width: 60%;
+	font-size: 20px;
+}

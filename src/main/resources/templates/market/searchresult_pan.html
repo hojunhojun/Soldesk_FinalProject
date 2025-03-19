@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div class="pan">
+    <div class="divscroll">
+        <div class="item" th:each="item : ${ssresult}">
+            <table class="pantable">
+                <tr>
+                    <td style="height:100px;">
+                        <img alt="" th:src="${item.rtymimg}">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="height:250px;">
+                        <a th:href="${item.rtymlnk}"><span th:utext="${item.rtymtt}"></span></a><p/>
+                        <span th:text="${item.rtymct1}"></span> &gt; <span th:text="${item.rtymct2}"></span> &gt; 
+                        <span th:text="${item.rtymct3}"></span> &gt; <span th:text="${item.rtymct4}"></span><p/>
+                        <span th:text="${item.rtymbd}"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="height:100px;">
+                        <span th:text="${item.rtymprce}"></span>원<p/>
+                        <span th:text="${item.rtymmn}"></span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

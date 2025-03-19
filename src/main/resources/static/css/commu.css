@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+.commuImgTd {
+	width: 50px;
+}
+
+.commuImgTd img {
+	max-width: 45px;
+	
+}

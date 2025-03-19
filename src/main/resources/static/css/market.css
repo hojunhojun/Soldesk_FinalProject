@@ -1,0 +1,875 @@
+/*---------------------------------------font------------------------------------------------*/
+@font-face {
+    font-family: 'a';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroB.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'NNGT';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noon-2410@1.0/NoonnuBasicGothicRegular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'KBld';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2302_01@1.0/KimjungchulMyungjo-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
+/*-------------------------------------------------------------------------------------------*/
+
+div, span, input, button{
+	font-family: 'NNGT';
+}
+
+table{
+	background-color: #FFFFFF00;
+}
+
+body{
+	padding:0px;
+	margin:0px;
+}
+
+body::-webkit-scrollbar{
+	display:none;
+}
+
+/*-----------market.html-----------------*/
+#marketmaindiv{
+	width:1200px;
+	height:812.5px;
+	border-radius:10px;
+	border: #FF6600 solid 2px;
+	background-color: #FFD580;
+	overflow: hidden;
+}
+
+#marketmaindiv::-webkit-scrollbar{
+	display:none;
+}
+
+.up_menutable{
+	width:1200px;
+	border-radius:10px;
+	background-color: #FFD580;
+}
+
+.downbartable{
+	width:1200px;
+	background-color: #FFD580;
+}
+
+#mainmarkettdo{
+	width:800px;
+	background-color: #FF8C00;
+	border-top-left-radius:10px;
+	border-bottom-right-radius:10px;
+}
+
+.up_menutable h3 {
+	text-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+	width:100%;
+	height:100%;
+    font-family: 'KBld';
+    margin: 0;
+    font-size: 24px;
+    border-radius:10px;
+}
+
+.up_menutable td{
+	background-color: #FFD580;
+	width:100px;
+	text-align: center;
+}
+
+.catechanger, .inandout {
+	border-top-right-radius:10px;
+	background-color:  #FF8C00;
+    text-align: center;
+    height:50px;
+}
+
+#searchingimg{
+	display:inherit;
+}
+
+.searchshowpage{
+	width:1200px;
+	height:812.5px;
+	overflow: scroll;
+}
+
+.searchshowpage::-webkit-scrollbar{
+	display:none;
+}
+
+#sec_searcharea{
+	display:none;
+}
+
+.sec_searcharea_sub{
+	outline:none;
+	width:155px;
+	height:25px;
+	border:none;
+	background-color: #FFFFFF00;
+}
+
+.searchshowpage{
+	border-radius:10px;
+}
+
+.shopsproductedpage{
+	width:1200px;
+	height:605.5px;
+	/* height:605.5px; */
+	overflow:scroll;
+	border-radius:10px;
+}
+
+.shopsproductedpage::-webkit-scrollbar{
+	display:none;
+}
+/*---------sidebar_category.html---------*/
+.sidebar_table{
+	width:1200px;
+	display:none;
+	height:50px;
+	border-radius:10px;
+	background-color: #FFD58000;
+}
+
+.sidebar_table button, #nsc_etc, .buttoncon{
+	width:100%;
+	height:100%;
+	border: #FF8C00 solid 2px;
+	background-color: #FFD580;
+	color: black;
+	font-size: large;
+	font-family: 'NNGT';
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+	border-radius:10px;
+}
+
+.etccontainer, .milkcontainer,
+ .drinkcontainer, .breadcontainer,
+  .scncontainer, .meatcontainer,
+   .seafoodcontainer, .farmcontainer{
+	background-color: #FFD580;
+	position: fixed;
+	width:1198px;
+	top:-500px;
+	display:flex;
+	text-align: center;
+	border: #FF8C00 solid 2px;
+	border-radius:10px;
+}
+
+.etccontainer button, .milkcontainer button,
+ .drinkcontainer button, .breadcontainer button,
+  .scncontainer button, .meatcontainer button,
+   .seafoodcontainer button, .farmcontainer button{
+	border:none;
+	display:inline-block;
+	padding:0px;
+	margin:0px;
+	width:150px;
+	height:50px;
+	background-color: #FFD580;
+	color: black;
+	font-family: 'NNGT';
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+	border-radius:10px;
+}
+
+.etccontainer button:hover, .milkcontainer button:hover,
+ .drinkcontainer button:hover, .breadcontainer button:hover,
+  .scncontainer button:hover, .meatcontainer button:hover,
+   .seafoodcontainer button:hover, .farmcontainer button:hover{
+	background-color:#FFDD82;	
+}
+
+/*---------markethome.html---------*/
+.markethometable{
+	width:1200px;
+	height:650px;
+}
+
+.mainsearcharea{
+	width:1200px;
+	height:50px;
+	background-color: #FFD58000;
+}
+
+.mainsearcharea td{
+	border-radius: 10px;
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.search-form-wrapper {
+    width: 300px; 
+    height: 40px;
+}
+
+/*------searchresult1.html------*/
+.searchform{
+	margin-left:auto;
+	margin-right:auto;
+	width:300px;
+	height:40px;
+	border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+	background-color: #FFF8E1;
+}
+
+.sec_searcharea_main{
+	outline:none;
+	width:265px;
+	border:none;
+	height:35px;
+	border-radius:10px;
+	background-color:#FFFFFF00;
+}
+
+.sec_searcharea_main::placeholder{
+	font-size:medium;
+	text-align: center;	
+	font-family: 'NNGT';
+}
+
+.searchBut{
+	display:inline-block;
+	border: none;
+	width:25px;
+	height: 25px;
+}
+/*------------------------------*/
+#priceform{
+	width:300px;
+	height:40px;
+	border-radius:10px;
+	background-color: #FFF8E1;
+	border-collapse: collapse;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    font-family: 'NNGT';
+}
+.pricesearchInput{
+	outline:none;
+	width:265px;
+	height:35px;
+	border:none;
+	border-radius:10px;
+	background-color: #FFF8E1;
+	font-size: large;
+	font-family: 'NNGT';
+}
+.pricesearchInput::placeholder{
+	text-align:center;
+	font-family: 'NNGT';
+	font-size: medium;
+}
+
+.pricesearchBut{
+	display:inline-block;
+	border: none;
+	width:25px;
+	height: 25px;
+}
+
+#selectionsearcher{
+	height:35px;
+	border: #FF6600 solid 2px;
+	background-color: #FFF8E1;
+	font-family: 'NNGT';
+	border-radius: 10px;
+}
+
+#selectionsearcher::focus{
+	outline: none;
+}
+
+#searchDTASHOW{
+	width:500px;
+	height: 650px;
+	background-color:#F5F5DB; 
+	border-bottom-left-radius:10px;
+	box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+#resultshowDIV{
+	display:none;
+	width:auto;
+	height:650px;
+	overflow: hidden;
+}
+
+#resultshowDIV::-webkit-scrollbar{
+	display:none;
+}
+
+#resultshowDIV2{
+	display:inline-block;
+	width:auto;
+	height:650px;
+	overflow: hidden;
+}
+
+#trcpscroller{
+	height:650px;
+	width:400px;
+	border-radius:10px;
+	overflow:scroll;
+}
+
+#trcpscroller::-webkit-scrollbar{
+	display:none;	
+}
+
+#trcptable{
+	width:400px;
+	height:600px;
+	margin:auto;
+}
+
+#trcptable tr{
+	width:400px;
+}
+
+#trcptable td{
+    height:200px;
+    border-bottom:2px solid #ccc;
+}
+.partrcptd{
+	width:200px;
+	height:auto;
+	text-align: center;
+    vertical-align: middle;
+}
+#trcptable img{
+	width:175px;
+	height:150px;
+	margin:auto;
+	border:1px solid white;
+	border-radius:10px;
+}
+
+#trcptable div{
+	width:200px;
+	height:75px;
+	text-align: center;
+}
+#trcptable span{
+	width:auto;
+	height:auto;
+	text-align:left;
+}
+
+#resultshowDIV2::-webkit-scrollbar{
+	display:none;
+}
+
+#resultshowKEYWORD{
+	width:500px;
+	height:100px;
+	background-color: #F5F5CB;
+}
+
+#resultshowKEYWORD td{
+	background-color: #FF8C00;
+	border-bottom-right-radius: 10px;
+}
+
+#resultshowKEYWORD div{
+	width:100%;
+	height:100px;
+	border-radius:10px;
+	background-color: #FF8C0000;
+}
+
+#resultshowKEYWORD span{
+	background-color:#FF660000;
+	font-size:x-large;
+	color: black;
+ 	text-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+	font-family: 'NNGT';
+}
+
+#resultshowPGE{
+	width:100px;
+	height:550px;
+	float:right;
+	background-color: #FF8C0000;
+}
+
+#resultshowPGE td{
+	height:45px;
+    text-align: center;
+    background-color: #FF8C0000;
+    border-bottom:1px solid #ccc;
+    border-right:1px solid #ccc;
+    border-left:1px solid #ccc;
+}
+#resultshowPGE span{
+	height:45px;
+}
+.scroller {
+	margin:0px;
+	padding:0px;
+    width: 400px;
+    height: 550px;
+    overflow: scroll;
+}
+
+.scroller::-webkit-scrollbar {
+    display: none;
+}
+
+#resultsearchDTAshowtb {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+}
+
+#resultsearchDTAshowtb tr:not(:first-child) {
+    border-radius: 10px;
+    border: 2px solid #9ED6C0;
+    background-color: #F5F5DD;
+}
+
+#resultsearchDTAshowtb td {
+    height: 91.6666666667px;
+    background-color: #F5F5D00D;
+    padding: 5px;
+    border-radius:10px;
+    border:1px solid orange;
+}
+
+#resultsearchDTAshowtbtdimg {
+    width: 100px;
+}
+
+#resultsearchDTAshowtbtdimg img {
+    border-radius: 10px;
+    width: 100px;
+    height: 91.6666666667px;
+    object-fit: cover;
+}
+
+#resultsearchDTAshowtbtdlttilte {
+    width: 200px;
+    text-align: center;
+}
+
+#resultsearchDTAshowtbtdprice {
+    width: 100px;
+}
+
+#resultsearchDTAshowtb a, #resultsearchDTAshowtb span {
+    text-align: center;
+    font-family: 'NNGT';
+    display: block;
+}
+
+
+.graph_block{
+	width:600px;
+	height:600px;
+	overflow: scroll;
+	background-color:#F5F5DB;
+	border-collapse: collapse;
+}
+
+.graph_block::-webkit-scrollbar{
+	display:none;
+}
+
+#searchrankcontainer{
+	width:100px;
+	height:650px;
+	background-color:#F5F5DB;
+	border-bottom-right-radius: 10px;
+}
+
+#searchrankcontainer form{
+	width:100px;
+	height:650px;
+	margin:auto;
+}
+
+#searchcontainer{
+	border-bottom-right-radius: 10px;
+}
+
+#searchcontainerdiv{
+	border-top-right-radius:10px;
+	text-align:center;
+	align-items:center;
+	justify-content:center;
+	width:100%;
+	border-bottom:2px #ccc solid;
+	border-left:2px #ccc solid;
+	height:50px;
+	font-family: 'NNGT';
+	text-align: center;
+	font-size: small;
+	background-color: #FFDBBB00;
+	margin:auto;
+	display:flex;
+}
+
+.bottomdivcl{
+	text-align:center;
+	align-items:center;
+	justify-content:center;
+	width:100%;
+	height:25px;
+	font-family: 'NNGT';
+	text-align: center;
+	font-size: medium;
+	background-color: #FFDBBB00;
+	border-bottom-right-radius:10px;
+	border-bottom-left-radius:10px;
+}
+
+#searchcontainer button{
+	font-family:'NNGT';
+	width:100%;
+	margin:auto;
+	height:60.1px;
+	display:inline-block;
+	border:none;
+	border-bottom:#ccc solid 2px;
+	border-bottom-right-radius:10px;
+	border-left:#ccc solid 2px;
+	text-align:center;
+	background-color: #FFDBBB00;
+}
+
+#searchcontainer a{
+	font-family:'NNGT';
+	width:auto;
+	margin:auto;
+	height:100px;
+	text-align:center;
+}
+
+#searchcontainer button:hover{
+	border-bottom-right-radius:10px;
+	background-color: #FFB380;
+}
+
+
+
+
+
+
+.scbar_table{
+	width:1198px;
+	display:flex;
+	border:2px solid #FFB380;
+	border-radius:10px;
+	background-color:#F5F5DB;
+}
+
+.scbar_table button{
+	width:240px;
+	height:50px;
+	border:none;
+	border-radius:10px;
+	background-color: #FFFFFF00;
+}
+
+.scbar_table button:hover{
+	background-color: white;
+}
+
+#productContainer {
+    width: 1200px;
+    margin: 0px;
+    height: 600px;
+    overflow-y: auto;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+}
+
+#productContainer::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+}
+
+.divscroll{
+	width:1200px;
+	height:812.5px;
+	overflow: scroll;
+}
+
+.divscroll::-webkit-scrollbar{
+	display: none;
+}
+
+.barviewtable{
+	width:1200px;
+	border-radius:10px;
+}
+.barviewtable td{
+	background-color:#F5F5DB;
+	width:230px;
+	border: #FF6600 solid 1px;
+	border-radius:10px;
+}
+
+.barviewtable img{
+	width:230px;
+	height:100px;
+	margin:auto;
+	border-radius:10px;
+}
+
+.marketsearcharea{
+	width:350px;
+	height:25px;
+	border:none;
+	background-color: #FFFFFF00;
+}
+.pan{
+	display:none;
+}
+
+.pantable{
+	width:239.5px;
+	height:300px;
+	float:right;
+	border-radius:10px;
+}
+
+.pantable td{
+	width:239.5px;
+	border-radius:10px;
+	border: #FF6600 solid 1px;
+	background-color:#F5F5DB;
+}
+
+.pantable img{
+	width:235px;
+	height:117.5px;
+	margin:auto;
+	border-radius:10px;
+}
+.divscroll a{
+	font-size: medium;	
+}
+
+
+#goseafood{
+	height:50px;
+}
+.category-container {
+    display: inline-block; /* 또는 inline-flex */
+}
+
+.farmingmaincatetable,
+.seafoodmaincatetable,
+.meatmaincatetable,
+.scnmaincatetable,
+.bakemaincatetable,
+.drinkmaincatetable,
+.milkmaincatetable
+{
+	width:590px;
+	height:300px;
+	overflow: scroll;
+	overflow-y:hidden;
+}
+ 
+.farmingmaincatetable td,
+.seafoodmaincatetable td,
+.meatmaincatetable td,
+.scnmaincatetable td,
+.bakemaincatetable td,
+.drinkmaincatetable td,
+.milkmaincatetable td
+{
+	height:150px;
+}
+
+
+.maincatedivscroll{
+	width:590px;
+	height:600px;
+	overflow: scroll;
+	display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.maincatedivscroll::-webkit-scrollbar,
+.farmingmaincatetable::-webkit-scrollbar,
+.seafoodmaincatetable::-webkit-scrollbar,
+.meatmaincatetable::-webkit-scrollbar,
+.scnmaincatetable::-webkit-scrollbar,
+.bakemaincatetable::-webkit-scrollbar,
+.drinkmaincatetable::-webkit-scrollbar,
+.milkmaincatetable::-webkit-scrollbar
+{
+	display: none;
+}
+
+.bar{
+	display:flex;
+}
+
+.searchrankcon{
+	background-color: yellow;
+}
+
+.canvasContainer {
+      width: 590px;
+      height: 590px;
+      margin: auto;
+      overflow: hidden;
+      position: relative;
+  }
+.chartSlider {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+.chartCanvas {
+    width: 590px !important;
+    height: 590px !important;
+    flex-shrink: 0;
+}
+.slideButton {
+	background-color: #FFFFFF00;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+}
+    
+#prevButton { left: 10px; }
+#nextButton { right: 10px; }
+.category-slider-container {
+    position: relative;
+    width: 600px;
+    height: 600px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.category-slider {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.category-container {
+    flex: 0 0 600px;
+    width: 600px;
+    height: 600px;
+    display: flex;
+    flex-wrap: wrap;
+    overflow:scroll;
+    align-content: flex-start;
+    padding: 10px;
+    box-sizing: border-box;
+}
+.category-container::-webkit-scrollbar{
+	display:none;
+}
+.category-header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.category-header img {
+    width: 290px;
+    height: 200px;
+    object-fit: cover;
+    border:1px solid white;
+	border-radius:10px;
+	border-collapse: collapse; 
+	box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.category-title {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+.product-item {
+    flex: 0 0 calc(33.333% - 10px);
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.product-item img {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+    border:1px solid white;
+	border-radius:10px;
+	border-collapse: collapse; 
+	box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.product-info {
+    width: 100%;
+    text-align: center;
+    font-size: 0.8em;
+}
+.slide-button {
+   position: absolute;
+   top: 50%;
+   transform: translateY(-50%);
+   background: rgba(0,0,0,0.5);
+   color: white;
+   border: none;
+   padding: 10px;
+   cursor: pointer;
+   z-index: 1000;
+}
+#slidePrevButton { left: 10px; }
+#slideNextButton { right: 10px; }
+
+.pagination {
+	position:absolute;
+	width: 1200px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    border: none;
+    margin-top: -9.75px;
+}
+
+.pagination a {
+    color: black;
+    float: left;
+    text-decoration: none;
+    background-color: #FFFFFF00;
+    transition: background-color .3s;
+    border: none;
+    margin: 0 15px; 
+    font-size: 12.5px;
+}
+
+.pagination a.active {
+    border: none;
+    background-color: #4CAF5000;
+    color: black;
+    border: 2px solid orange;
+}

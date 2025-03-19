@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>가격 변동 추이</title>
+<!-- Chart.js CDN 추가 -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
+
+<style type="text/css">
+
+#resultshowDIV2{
+	display:none;
+}
+
+#resultshowDIV{
+	display:inline-block;
+}
+
+</style>
+</head>
+<body>
+    <div class="canvasContainer">
+        <div class="chartSlider">
+            <canvas id="myChart" class="chartCanvas"></canvas>
+            <canvas id="myChart2" class="chartCanvas"></canvas>
+            <canvas id="myChart3" class="chartCanvas"></canvas>
+            <canvas id="myChart4" class="chartCanvas"></canvas>
+            <canvas id="myChart5" class="chartCanvas"></canvas>
+        </div>
+    </div>
+    
+    <script th:inline="javascript">
+    function chartsliderclicker(){
+    	$(".pricesearchBut").click(function(){
+    		$("#prevButton, #nextButton").css("display", "flex");
+    	});
+    }
+    var priceData = /*[[${priceData}]]*/ [];
+    const uniqueSchkeys = [...new Set(priceData.map(item => item.rmkp_schkey))];
+
+    function formatDate(dateString) {
+        const date = new Date(dateString);
+        const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+            "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+        ];
+        const day = date.getDate();
+        const month = monthNames[date.getMonth()];
+        return `${month} ${day}`;
+    }
+	
+    function groupDataByDay(data) {
+        const groupedData = {};
+        data.forEach(item => {
+            const date = new Date(item.rmkp_Date);
+            const dateKey = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
+            if (!groupedData[dateKey]) {
+                groupedData[dateKey] = {
+                    rmkp_Date: new Date(date.getFullYear(), date.getMonth(), date.getDate()),
+                    rmkp_Aver: 0,
+                    rmkp_Low: 0,
+                    rmkp_High: 0,
+                    rmkp_Pyun: 0,
+                    rmkp_DTACT: 0,
+                    count: 0
+                };
+            }
+            groupedData[dateKey].rmkp_Aver += item.rmkp_Aver;
+            groupedData[dateKey].rmkp_Low += item.rmkp_Low;
+            groupedData[dateKey].rmkp_High += item.rmkp_High;
+            groupedData[dateKey].rmkp_Pyun += item.rmkp_Pyun;
+            groupedData[dateKey].rmkp_DTACT += item.rmkp_DTACT;
+            groupedData[dateKey].count++;
+        });
+        return Object.values(groupedData).map(item => ({
+            rmkp_Date: item.rmkp_Date,
+            rmkp_Aver: item.rmkp_Aver / item.count,
+            rmkp_Low: item.rmkp_Low / item.count,
+            rmkp_High: item.rmkp_High / item.count,
+            rmkp_Pyun: item.rmkp_Pyun / item.count,
+            rmkp_DTACT: item.rmkp_DTACT / item.count
+        }));
+    }
+    const dailyPriceData = groupDataByDay(priceData);
+
+    const commonOptions = {
+    	    responsive: false,
+    	    maintainAspectRatio: false,
+    	    plugins: {
+    	    	pan: {
+    	    		pan:{
+	   	                enabled: true,
+	   	                mode: 'x',
+    	    		}
+   	            },
+    	        zoom: {
+    	            zoom: {
+    	                wheel: {
+    	                    enabled: true
+    	                },
+    	                pinch: {
+    	                    enabled: true
+    	                },
+    	                mode: 'xy',
+    	            }
+    	        },
+    	        tooltip: {
+    	            mode: 'index',
+    	            intersect: false
+    	        },
+    	        legend: {
+    	            labels: {
+    	                font: {
+    	                    size: 14
+    	                }
+    	            }
+    	        }
+    	    },
+    	    scales: {
+    	        x: {
+    	            ticks: {
+    	                maxTicksLimit: 10,
+    	                maxRotation: 0,
+    	                minRotation: 0
+    	            }
+    	        },
+    	        y: {
+    	            beginAtZero: true,
+    	            ticks: {
+    	                stepSize:1
+    	            }
+    	        }
+    	    },
+    	    layout: {
+    	        padding: {
+    	          left: 50,
+    	          right: 50,
+    	          top: 50,
+    	          bottom: 50
+    	        }
+    	      },
+    	    elements: {
+    	        point: {
+    	            radius: 3
+    	        },
+    	        line: {
+    	            borderWidth: 1
+    	        }
+    	    }
+    	};
+
+    function createChart(canvasId, label, data, borderColor) {
+        const ctx = document.getElementById(canvasId).getContext('2d');
+        return new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: dailyPriceData.map(item => formatDate(item.rmkp_Date)),
+                datasets: [{
+                    label: label,
+                    data: data,
+                    borderColor: borderColor,
+                    fill: false,
+                    tension:0
+                }]
+            },
+            options: commonOptions
+        });
+    }
+
+    const myChart = createChart('myChart', uniqueSchkeys + ' 평균가 변동 추이', dailyPriceData.map(item => item.rmkp_Aver), '#90EE90');
+    const myChart2 = createChart('myChart2', uniqueSchkeys + ' 저가상품 평균치 변동 추이', dailyPriceData.map(item => item.rmkp_Low), '#87CEEB');
+    const myChart3 = createChart('myChart3', uniqueSchkeys + ' 고가상품 평균치 변동 추이', dailyPriceData.map(item => item.rmkp_High), '#DC143C');
+    const myChart4 = createChart('myChart4', uniqueSchkeys + ' 상품별 편차치 변동 추이', dailyPriceData.map(item => item.rmkp_Pyun), '#C75A9A');
+    const myChart5 = createChart('myChart5', uniqueSchkeys + ' 서버 데이터수 변동 추이', dailyPriceData.map(item => item.rmkp_DTACT), 'black');
+    $(document).ready(function() {
+        let currentSlide = 0;
+        const totalSlides = $('.chartCanvas').length;
+
+        $('#nextButton').click(function() {
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                updateSlider();
+            }
+        });
+
+        $('#prevButton').click(function() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                updateSlider();
+            }
+        });
+
+        function updateSlider() {
+            $('.chartSlider').css('transform', `translateX(-${currentSlide * 590}px)`);
+        }
+    });
+    </script>
+</body>
+</html>

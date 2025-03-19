@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div id="login">
+		<div>
+			<button>로그인</button>
+		</div>
+		<div>
+			<a href="join.go">회원가입</a> 
+		</div>
+	</div>
+	
+	<form action="login.do" onsubmit="return loginCheck(this);" method="post" name="loginForm">
+		<div id="loginTbl">
+			<div>
+				<input name="id" id="id" placeholder="아이디를 입력하세요" autocomplete="off">
+			</div>
+			<div>
+				<input name="pw" id="pw" placeholder="비밀번호를 입력하세요" autocomplete="off" type="password">
+			</div>
+			<div>
+				<button>로그인</button>
+			</div>
+		</div>
+	</form>
+</body>
+</html>

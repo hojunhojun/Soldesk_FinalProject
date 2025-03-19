@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div id="foodGuideArea">
+		<div id="basicSetting">
+			<div id="searchForm">
+				<div id="searchDiv">
+					<input id="searchInput" name="search"
+						placeholder="&nbsp;검색어를 입력하세요" autocomplete="off">
+					<button id="searchBtn" type="button">
+						<img alt="" src="img/icon/searchButton.png">
+					</button>
+				</div>
+			</div>
+			<div class="rightAlien" th:if="${session.loginMember != null}">
+				<button id="foodGuidePostRegGo">업로드하기</button>
+			</div>
+		</div>
+
+		<div id="foodGuidePosts"></div>
+
+		<div id="fgCommuRegArea" class="fgCommuPopupArea">
+			<form method="post" enctype="multipart/form-data" id="fgCommuUploadForm">
+				<input name="token" th:value="${token }" type="hidden">
+				<input name="type" value="3" type="hidden">
+				<div id="topSection">
+					<h2>식재료 가이드 등록</h2>
+					<div class="rightAlien">
+						<button id="closePopup" type="button">
+							<img alt="" src="img/icon/closeButton.png">
+						</button>
+					</div>
+				</div>
+				<div id="titleSection">
+					<input name="title" placeholder="제목을 입력해주세요" maxlength="80" autocomplete="off">
+				</div>
+				<div id="textSection">
+					<textarea name="text" id="fgTextBox" maxlength="600" placeholder="리뷰 내용"></textarea>
+				</div>
+				<div id="fileSection">
+					<div class="label">메인 이미지 등록 (필수)</div>
+					<input type="file" name="file1" id="file1">
+					<button id="fgPlusBtn" type="button">이미지 추가<br>(선택)</button>
+					<input type="file" name="file2" id="file2" class="fgImgHide">
+					<input type="file" name="file3" id="file3" class="fgImgHide">
+					<input type="file" name="file4" id="file4" class="fgImgHide">
+					<input type="file" name="file5" id="file5" class="fgImgHide">
+				</div>
+				<div>
+					<button id="fgCommuUploadBtn" class="fgCommuPopupButton" type="button">등록</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

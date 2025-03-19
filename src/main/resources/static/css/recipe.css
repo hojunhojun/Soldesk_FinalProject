@@ -1,0 +1,255 @@
+@charset "UTF-8";
+
+@font-face {
+    font-family: 'a';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroB.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'm';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2405-3@1.1/MangoDdobak-B.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
+#circleMenuArea {
+    display: flex;
+    justify-content: center; /* 위치는 그대로 유지 */
+    gap: 90px; /* 각 카테고리 사이 간격 늘리기 */
+}
+
+.circleMenu {
+    width: 100px; /* div 크기 줄이기 */
+    height: 100px;
+    text-align: center;
+    padding: 0; /* 불필요한 패딩 제거 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: border 0.3s ease-in-out, transform 0.3s ease-in-out;
+    border: 2px solid transparent; /* 기본 상태에서 테두리 안 보이게 */
+    border-radius: 10%; /* 둥근 테두리 */
+}
+
+.circleMenu:hover {
+    border: 2px solid #FF6600; /* 마우스 오버 시 오렌지색 테두리 */
+    transform: scale(1.1); /* 살짝 커지는 효과 */
+}
+
+#circleMenuArea .circleMenu img {
+	width: 60px;
+}
+
+.recipe-card {
+  display: flex; /* 사진과 텍스트를 가로로 정렬 */
+  align-items: flex-start; /* 텍스트를 사진 상단에 정렬 */
+  background-color: #f8eac6; /* 배경색 */
+  border: 1px solid #000; /* 외곽선 */
+}
+
+.photo {
+  width: 150px; /* 사진 영역 너비 */
+  height: 150px; /* 사진 영역 높이 */
+  background-color: #f3ead4; /* 사진 배경색 */
+  border: 2px solid #000; /* 사진 테두리 */
+  margin-right: 16px; /* 사진과 텍스트 간의 간격 */
+}
+
+.content {
+  font-size: 14px;
+  line-height: 2; /* 텍스트 줄 간격 */
+}
+
+.name {
+  font-weight: bold; /* 레시피 제목 강조 */
+}
+
+.toft {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2열 정렬 */
+    gap: 10px; /* 간격 줄이기 */
+    width: 100%;
+    justify-content: center;
+}
+
+.layout-table {
+    background-color: #fdf4e3;
+    width: 600px; /* 한 열에 들어갈 크기 조정 */
+    text-align: center;
+    border: 2px solid black;
+    height: 180px; /* 높이 20px 증가 */
+    transition: border-color 0.3s;
+    border-radius: 5px;
+}
+
+/* 마우스 호버 시 테두리 색상 변경 */
+.toft a:hover .layout-table {
+    border-color: #ff6600;
+}
+
+/* 이미지 셀 크기 조정 */
+.photo-cell {
+    width: 160px;
+    height: 140px;
+    border: 1px solid #000;
+    padding: 0px;
+    overflow: hidden;
+}
+
+.toft a:hover .photo-cell {
+    border-color: #ff6600;
+}
+
+.photo-cell img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.title {
+	font-size: 17pt;
+	font-weight: bold;
+}
+.category {
+	font-size: 13pt;
+	font-weight: bold;
+}
+.subtitle {
+	font-size: 10pt;
+}
+.recommendation, .check {
+    width: 150px;
+}
+#SearchArea{
+	width: 1000px;		border: #4A6AECCC solid 7px;
+	border-radius:15px;
+	background-color: #FFFFFF99;
+}
+/* 버튼 + 검색바 컨테이너 */
+.search-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px; /* 버튼과 검색바 사이 간격 */
+    width: 1200px;
+    margin: 30px auto 30px; /* 아래 요소와 간격 */
+}
+
+/* 검색 입력 필드 */ 
+.search-form {
+    display: flex;
+    align-items: center;
+    flex-grow: 1; /* 남은 공간 차지 */
+    border: #FF6600 solid 3px;
+    border-radius: 15px;
+    background-color: #FFFFFF99;
+    padding: 5px;
+}
+
+/* 검색 입력 필드 스타일 */
+#SearchInput {
+    border: none;
+    background-color: transparent;
+    width: 100%;
+    font-family: "g";
+    font-size: 13pt;
+    padding: 5px;
+    outline: none;
+}
+
+/* 검색 버튼 */
+#SearchBtn {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    max-width: 60px;
+}
+
+#SearchBtn img {
+    width: 20px;
+    height: 20px;
+}
+
+/* 정렬 버튼 스타일 */
+.sort-buttons {
+    display: flex;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.sort-buttons button {
+    border: none;
+    background: white;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    outline: none;
+    transition: background 0.3s, color 0.3s;
+}
+
+.sort-buttons button.active {
+    background: #ff6600;
+    color: white;
+}
+
+.sort-buttons button:not(:last-child) {
+    border-right: 1px solid #ccc;
+}
+
+/*---- 페이지 CSS ----*/
+.pagination {
+    display: flex;
+    justify-content: center; /* 가운데 정렬 */
+    align-items: center;
+    width: 100%; /* 부모 컨테이너(toft)의 전체 너비 */
+    max-width: 1000px; /* 원하는 최대 너비 설정 */
+    margin: 50px auto 70px; /* 위아래 여백 추가 & 가운데 정렬 */
+    padding: 10px 0;
+}
+
+.pagination li {
+    list-style: none;
+    margin: 0 5px;
+}
+
+.pagination a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 40px; /* 버튼 최소 가로 크기 고정 */
+    height: 30px; /* 버튼 높이 고정 */
+    padding: 5px 0; /* 위아래 패딩 */
+    text-decoration: none;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+    transition: background 0.3s, color 0.3s;
+}
+
+.pagination a:hover {
+    background-color: #ff6600;
+    color: white;
+    border-color: #ff6600;
+}
+
+/* 현재 페이지 활성화 스타일 */
+.pagination .active a {
+    background-color: #ff6600;
+    color: white;
+    border-color: #ff6600;
+    font-weight: bold;
+}
+
+/* 비활성화된 버튼 스타일 */
+.pagination .disabled a {
+    color: #aaa;
+    pointer-events: none;
+    border-color: #ddd;
+}
+
+

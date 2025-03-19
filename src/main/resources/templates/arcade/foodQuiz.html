@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div id="foodquiz">
+		<div class="quiz-progress">문제 진행 상황</div>
+		<div id="foodImgArea">
+			<img alt="" src="" id="foodImg">
+		</div>
+		<div id="foodanswer">
+			<input id="answerInput" autocomplete="off">
+			<button>제출</button>
+		</div>
+		<div class="nextPopUpArea">
+			<div class="nextPopUp">
+				<div class="quizNextArea">
+					<div>
+						<h1 id="ox">정답 여부</h1>
+					</div>
+					<div id="foodNextContent">
+						<div id="correctImg">
+							<img alt="" src="">
+						</div>
+						<div id="correctArea">
+							<div id="correctAnswer">답</div>
+							<button id="next">다음</button>
+						</div>
+					</div>
+				</div>
+				<div class="quizResultArea">
+					<h1>퀴즈 종료</h1>
+					<h1 id="result">맞은 갯수</h1>
+					<button id="home">홈으로 가기</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="foodQuizData">
+		<div th:each="quiz : ${pickQuiz}"
+			th:data-question="|rty.quiz.image/${quiz.quiz}|"
+			th:data-answer="${quiz.cor}"></div>
+	</div>
+</body>
+</html>

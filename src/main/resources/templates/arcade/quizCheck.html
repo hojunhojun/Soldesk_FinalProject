@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div id="quizAll">
+		<div id="toggle">
+			<input type="radio" value="1" name="type" checked> 음식 상식
+			퀴즈&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="radio" value="2"
+				name="type"> 음식 확대 퀴즈
+		</div>
+		<div id="CSQuizArea" class="hidden">
+			<div th:each="cs : ${CSQuiz}" id="CSQuizDiv">
+				<div class="quiz">[[${cs.quiz}]]</div>
+				<div class="cor">[[${cs.cor}]]</div>
+				<button th:onclick="deleteQuiz([[${cs.no}]])">삭제</button>
+			</div>
+		</div>
+		
+		<div id="FQuizArea" class="hidden">
+			<div th:each="f : ${foodQuiz}" id="fQuizDiv">
+				<div class="top">
+					<div class="cor">[[${f.cor}]]</div>
+					<button th:onclick="deleteQuiz([[${f.no}]])">삭제</button>
+				</div>
+				<div class="quiz">
+					<img alt="" th:src="|rty.quiz.image/${f.quiz}|">
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

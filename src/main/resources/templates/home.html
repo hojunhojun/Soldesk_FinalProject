@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div id="mainImgArea">
+		<div id="sliderArea">
+			<div id="menuNameLabel">오늘의 추천 메뉴</div>
+			<div class="bxslider"></div>
+		</div>
+		<div id="mainImg">
+			<img alt="" src="img/mainImg.png">
+		</div>
+	</div>
+	<div id="mainContentArea">
+		<div id="freeCommuArea">
+			<table id="mainFreeTop">
+				<tr>
+					<td>자유 게시판</td>
+					<td align="right"><a href="free.community.go">더보기 ></a></td>
+				</tr>
+				<tr>
+					<td class="line" colspan="2"></td>
+				</tr>
+				<tr>
+					<td colspan="2" align="center">
+						<table class="MainFreePosts" th:each="f : ${MainFreePosts}" th:onclick="freeCommuPostDetail([[${f.no}]], 1);">
+							<tr class="MainFreePost">
+								<td class="title">[[${f.title}]]</td>
+								<td class="writer">[[${f.writer.nick}]]</td>
+								<td class="date" th:text="${#dates.format(f.date, 'yyyy.MM.dd')}"></td>
+							</tr>
+							<tr>
+								<td class="line" colspan="4"></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div id="Area2">
+			<div id="ChallengeCommuArea">
+				<table id="ChallengeCommuAreaTbl">
+					<tr>
+						<td>도전 요리 게시판</td>
+						<td align="right"><a href="challenge.community.go">더보기 ></a></td>
+					</tr>
+					<tr>
+						<td class="line" colspan="2"></td>
+					</tr>
+					<tr>
+						<td colspan="2" id="todayRecipeTbl">
+							<table onclick="goChallenge();">
+								<tr>
+									<td rowspan="2" id="imgTd">
+										<div>
+											<img th:src="${todayRcp.rcpMainphoto}" alt="Recipe Image">
+										</div>
+									</td>
+									<td align="center" id="title">오늘의 도전 메뉴</td>
+								</tr>
+								<tr>
+									<td id="category" align="center">
+										[[${todayRcp.rcpName}]] ( [[${todayRcp.rcpCategory}]] )
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<div class="MainCommuPosts">
+								<div th:each="p : ${MainTodayChallengePosts}"
+									class="MainCommuPost"
+									th:onclick="challengeCommunityDetailGo([[${p.no}]], 2, 1)">
+									<div class="imgDiv">
+										<img th:src="|community.photo/${p.img1}|">
+									</div>
+									<div class="titleDiv">[[${p.title}]]</div>
+								</div>
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div id="foodGuideCommuArea">
+				<table>
+					<tr>
+						<td>식재료 가이드 게시판</td>
+						<td align="right"><a href="foodguide.community.go">더보기 ></a></td>
+					</tr>
+					<tr>
+						<td class="line" colspan="2"></td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<div class="MainCommuPosts">
+								<div th:each="p : ${MainFoodGuideposts}"
+									class="MainCommuPost"
+									th:onclick="foodGuidePostDetail([[${p.no}]]);">
+									<div class="imgDiv">
+										<img th:src="|community.photo/${p.img1}|">
+									</div>
+									<div class="titleDiv">[[${p.title}]]</div>
+								</div>
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

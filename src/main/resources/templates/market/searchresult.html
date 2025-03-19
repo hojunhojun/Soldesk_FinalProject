@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<!--  -->
+<div class="scbar_table">
+	<form action="go.adescsearch" method="get" style="width:1190px; border-radius:10px;">
+		<input  type="hidden" th:value="${query}" name="adesc_input_area">
+		<input  id="adesc_input_area" name="adesc_area" type="hidden" value="sim">
+		<button id="sim_button">정확도순</button>
+		<button id="date_button">날짜순</button>
+		<button id="asc_button">가격 낮은순</button>
+		<button id="desc_button">가격 높은순</button>
+	</form>
+	<button class="catechanger"><img id="seechanger" alt="이미지가 없다는 뜻" src="img/pan.png" style="width:25px; height:25px;">	</button>
+</div>
+	<div class="shopsproductedpage">
+	    <div th:insert="~{${showingpage_bar}}"></div>
+	    <div th:insert="~{${showingpage_pan}}"></div>
+	</div>
+	<div class="pagination" th:if="${totalPages > 1}">
+	    <a th:href="@{/go.adescsearch(adesc_input_area=${query}, adesc_area=${sortN}, page=${currentPage - 1})}" 
+	       th:if="${currentPage > 1}">이전</a>
+	    <span th:each="pageNumber : ${#numbers.sequence(startPage, endPage)}">
+	        <a th:href="@{/go.adescsearch(adesc_input_area=${query}, adesc_area=${sortN}, page=${pageNumber})}"
+	           th:text="${pageNumber}"
+	           th:class="${pageNumber == currentPage} ? 'active' : ''"></a>
+	    </span>
+	    <a th:href="@{/go.adescsearch(adesc_input_area=${query}, adesc_area=${sortN}, page=${currentPage + 1})}" 
+	       th:if="${currentPage < totalPages}">다음</a>
+	</div>
+</body>
+</html>

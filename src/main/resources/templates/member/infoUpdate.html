@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<table class="memberInfoArea">
+		<tr>
+			<td align="center">
+				<table class="memberInfoTbl">
+				<form action="member.update" onsubmit="return memberUpdateCheck(this);" method="post" enctype="multipart/form-data">
+					<tr>
+						<td class="memberInfoTd" align="center" style="font-size: 22px;">
+							회원정보 변경
+						</td>
+					</tr>
+					<tr>
+						<td class="memberInfoTd" th:text="|&nbsp;&nbsp;ID : ${session.loginMember.id}|"></td>
+					</tr>
+					<tr>
+						<td class="memberInfoTd">
+							&nbsp;&nbsp;PW : <input type="password" name="pw" placeholder="비밀번호" maxlength="15">
+						</td>
+					</tr>
+					<tr>
+						<td class="memberInfoTd">
+							&nbsp;&nbsp;PW 확인 : <input type="password" name="pwChk" placeholder="비밀번호확인" maxlength="15">
+						</td>
+					</tr>
+					<tr>
+						<td class="memberInfoTd" th:text="|&nbsp;&nbsp;이름 : ${session.loginMember.name}|"></td>
+					</tr>
+					<tr>
+						<td class="memberInfoTd">
+							&nbsp;&nbsp;닉네임 : <input id="updateNickInput" maxlength="8" name="nick" th:value="${session.loginMember.nick}" placeholder="낙네임">
+						</td>
+					</tr>
+					<tr>
+						<td class="memberInfoTd" th:text="|&nbsp;&nbsp;생년월일 : ${#dates.format(session.loginMember.bir,'yyyy-MM-dd')}|"></td>
+					</tr>
+					<tr>
+						<td class="memberInfoAddrTd">
+							&nbsp;&nbsp;우편번호 : <input class="memberAddr1Input" th:value="${addr1}" name="addr1" placeholder="우편번호" autocomplete="off" readonly="readonly">
+						</td>
+					</tr>
+					<tr>
+						<td class="memberInfoAddrTd">
+							&nbsp;&nbsp;주소 : <input class="memberAddr2Input" th:value="${addr2}" name="addr2" placeholder="주소" autocomplete="off" readonly="readonly">
+						</td>
+					</tr>
+					<tr>
+						<td class="memberInfoAddrTd">
+							&nbsp;&nbsp;상세주소 : <input class="memberAddr3Input" th:value="${addr3}" name="addr3" placeholder="상세주소" autocomplete="off">
+						</td>
+					</tr>
+					<tr>
+						<td class="memberInfoTd4">
+							&nbsp;&nbsp;Photo :&nbsp;<input type="file" name="photo2">
+						</td>
+					</tr>
+					<tr>
+						<td align="center" class="memberInfoImgTd">
+							<img th:src="@{|member.photo/${session.loginMember.pphoto}}|">
+						</td>
+					</tr>
+					<tr>
+						<td class="memberInfoButtonTd" align="center">
+							<button class="infoBtn">수정완료</button>
+				</form>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

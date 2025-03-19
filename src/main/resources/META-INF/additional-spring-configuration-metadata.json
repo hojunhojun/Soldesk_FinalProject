@@ -1,0 +1,5 @@
+{"properties": [{
+  "name": "member.photo.size",
+  "type": "java.lang.String",
+  "description": "A description for 'member.photo.size'"
+}]}

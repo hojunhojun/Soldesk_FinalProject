@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="quizHome">
+		<div id="quizReg" th:if="${session.loginMember != null}">
+			<a href="arcade.quiz.check.go" th:if="${session.loginMember.id == 'rtyAdmin'}">퀴즈 점검</a>
+			<button>퀴즈 등록하러 가기</button>
+		</div>
+		<div id="quizContent">
+			<div id="commenSenseArea">
+				<img alt="" src="img/commenSenseQuizImg.png">
+				<p>신기한 음식 상식 퀴즈를 맞춰보아요 !</p>
+				<button th:onclick="CSQuizGo();">퀴즈하러가기</button>
+			</div>
+			<div id="foodArea">
+				<img alt="" src="img/foodQuizImg.png">
+				<p>확대된 이미지를 보고 음식을 맞춰보아요 !</p>
+				<button th:onclick="foodQuizGo();">퀴즈하러가기</button>
+			</div>
+		</div>
+		<div id="quizRegTbl">
+			<form enctype="multipart/form-data" id="quizRegForm" method="post">
+				<div>
+					<h2>퀴즈 등록</h2>
+					<p>주제와 관련이 없는 퀴즈를 등록할 시 <br>삭제 조치가 이뤄짐을 알립니다.</p>
+					<div id="typeDiv">
+						<input name="type" value="1" type="radio" checked>음식 상식 퀴즈 &nbsp;&nbsp;&nbsp;&nbsp;
+						<input name="type" value="2" type="radio">음식 확대 퀴즈 
+					</div>
+					<div id="textInput" class="hidden">
+						<div class="label">퀴즈 입력</div>
+						<input name="quiz" placeholder="질문을 입력하세요" id="question" autocomplete="off"> 
+						<div class="line"></div>
+						<input name="choice1" placeholder="선택지을 입력하세요" class="bogi" autocomplete="off"> 
+						<input name="choice2" placeholder="선택지을 입력하세요" class="bogi" autocomplete="off"> 
+						<input name="choice3" placeholder="선택지을 입력하세요" class="bogi" autocomplete="off"> 
+						<input name="choice4" placeholder="선택지을 입력하세요" class="bogi" autocomplete="off">
+					</div>
+					<div id="fileInput" class="hidden">
+						<div class="label">이미지 등록</div>
+						<input type="file" name="file2">
+					</div>
+					<div id="corDiv">
+						<div class="label">정답</div>
+						<input name="cor" placeholder="정답를 입력하세요" autocomplete="off">
+					</div>
+				</div>
+				<div>
+					<button>등록</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

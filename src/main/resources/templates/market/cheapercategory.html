@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>상품 카테고리</title>
+</head>
+<body>
+<div class="category-slider-container">
+    <button id="slidePrevButton" class="slide-button">&lt;</button>
+    <div class="category-slider">
+        <div class="category-container">
+            <div class="category-header">
+                <img alt="" src="img/farming.png">
+                <div class="category-title">농산물</div>
+            </div>
+            <div th:each="cheap:${cheapresultfarm}" class="product-item">
+                <a th:href="${cheap.link}"><img alt="" th:src="${cheap.img}"></a>
+                <div class="product-info">
+                    <span th:utext="${cheap.title}"></span>
+                    <p><span th:text="${cheap.price}"></span>원</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="category-container">
+            <div class="category-header">
+                <img alt="" src="img/seafood.png">
+                <div class="category-title">수산물</div>
+            </div>
+            <div th:each="cheap:${cheapresultseafood}" class="product-item">
+                <a th:href="${cheap.link}"><img alt="" th:src="${cheap.img}"></a>
+                <div class="product-info">
+                    <span th:utext="${cheap.title}"></span>
+                    <p><span th:text="${cheap.price}"></span>원</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="category-container">
+            <div class="category-header">
+                <img alt="" src="img/meat.png">
+                <div class="category-title">축산물</div>
+            </div>
+            <div th:each="cheap:${cheapresultmeat}" class="product-item">
+                <a th:href="${cheap.link}"><img alt="" th:src="${cheap.img}"></a>
+                <div class="product-info">
+                    <span th:utext="${cheap.title}"></span>
+                    <p><span th:text="${cheap.price}"></span>원</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="category-container">
+            <div class="category-header">
+                <img alt="" src="img/scnnn.png">
+                <div class="category-title">조미료</div>
+            </div>
+            <div th:each="cheap:${cheapresultscn}" class="product-item">
+                <a th:href="${cheap.link}"><img alt="" th:src="${cheap.img}"></a>
+                <div class="product-info">
+                    <span th:utext="${cheap.title}"></span>
+                    <p><span th:text="${cheap.price}"></span>원</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="category-container">
+            <div class="category-header">
+                <img alt="" src="img/baking.png">
+                <div class="category-title">제과/제빵</div>
+            </div>
+            <div th:each="cheap:${cheapresultbak}" class="product-item">
+                <a th:href="${cheap.link}"><img alt="" th:src="${cheap.img}"></a>
+                <div class="product-info">
+                    <span th:utext="${cheap.title}"></span>
+                    <p><span th:text="${cheap.price}"></span>원</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="category-container">
+            <div class="category-header">
+                <img alt="" src="img/drink1.png">
+                <div class="category-title">음료</div>
+            </div>
+            <div th:each="cheap:${cheapresultdrink}" class="product-item">
+                <a th:href="${cheap.link}"><img alt="" th:src="${cheap.img}"></a>
+                <div class="product-info">
+                    <span th:utext="${cheap.title}"></span>
+                    <p><span th:text="${cheap.price}"></span>원</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="category-container">
+            <div class="category-header">
+                <img alt="" src="img/milky.png">
+                <div class="category-title">유제품</div>
+            </div>
+            <div th:each="cheap:${cheapresultmilk}" class="product-item">
+                <a th:href="${cheap.link}"><img alt="" th:src="${cheap.img}"></a>
+                <div class="product-info">
+                    <span th:utext="${cheap.title}"></span>
+                    <p><span th:text="${cheap.price}"></span>원</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button id="slideNextButton" class="slide-button">&gt;</button>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+let currentIndex = 0;
+
+$(document).ready(function() {
+    const slider = $('.category-slider');
+    const categories = $('.category-container');
+    const categoryCount = categories.length;
+
+    $('#slideNextButton').on('click', function() {
+        console.log('Next button clicked');
+        currentIndex = (currentIndex + 1) % categoryCount;
+        updateSlider();
+    });
+
+    $('#slidePrevButton').on('click', function() {
+        console.log('Prev button clicked');
+        currentIndex = (currentIndex - 1 + categoryCount) % categoryCount;
+        updateSlider();
+    });
+
+    function updateSlider() {
+        console.log('Updating slider. Current index:', currentIndex);
+        const translateX = -currentIndex * 600;
+        slider.css('transform', `translateX(${translateX}px)`);
+    }
+
+    updateSlider();
+});
+</script>
+</body>
+</html>

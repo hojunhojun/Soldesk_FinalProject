@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>레시피 상세보기</title>
+</head>
+
+<body>
+	<div class="recipe-container">
+		<div class="recipe-content">
+			<div class="recipe-text">
+				<h1 th:text="${subRecipe.rcpName}"></h1>
+				<hr>
+				<p>
+					<strong>카테고리 : </strong> <span th:text="${subRecipe.rcpCategory}"></span>
+				</p>
+				<hr>
+				<p>
+					<strong>추천 수 : </strong> <span th:text="${subRecipe.rcpRec}"></span>
+				</p>
+				<hr>
+				<p>
+					<strong>재료 : </strong> <br> <span
+						th:utext="${subRecipe.rcpParts}"></span>
+				</p>
+				<hr>
+				<p>
+					<strong>팁/저감요리법 : </strong> <span th:utext="${subRecipe.rcpTip}"></span>
+				</p>
+				<hr>
+				<p>
+					<strong>- 영양 정보 -</strong>
+				</p>
+				<ul>
+					<li>칼로리 : <span th:text="${subRecipe.rcpIfEng}"></span> kcal
+					</li>
+					<li>탄수화물 : <span th:text="${subRecipe.rcpIfCar}"></span> g
+					</li>
+					<li>단백질 : <span th:text="${subRecipe.rcpIfPro}"></span> g
+					</li>
+					<li>지방 : <span th:text="${subRecipe.rcpIfFat}"></span> g
+					</li>
+					<li>나트륨 : <span th:text="${subRecipe.rcpIfNa}"></span> mg
+					</li>
+				</ul>
+			</div>
+			<div class="recipe-image">
+				<img th:src="${subRecipe.rcpMainBphoto}" alt="레시피 메인 이미지" />
+			</div>
+		</div>
+		<hr>
+		<div class="recipe-steps">
+			<h2>조리 방법</h2> 
+			<div th:each="i : ${#numbers.sequence(1, 20)}"
+				th:if="${rcpMulFields['rcpMul' + ('00' + i).substring(i.toString().length())] != '' 
+                or rcpMulFields['rcpSubimg' + ('00' + i).substring(i.toString().length())] != ''}"
+				class="recipe-step">
+				<div class="recipe-steps-content">
+					<div class="recipe-text-wrapper">
+						<p
+							th:if="${rcpMulFields['rcpMul' + ('00' + i).substring(i.toString().length())] != ''}"
+							th:utext="${rcpMulFields['rcpMul' + ('00' + i).substring(i.toString().length())]}"></p>
+					</div>
+					<div class="recipe-image-wrapper">
+						<img
+							th:if="${rcpMulFields['rcpSubimg' + ('00' + i).substring(i.toString().length())] != ''}"
+							th:src="${rcpMulFields['rcpSubimg' + ('00' + i).substring(i.toString().length())]}"
+							alt="조리 과정 이미지" />
+					</div>
+				</div>
+				<div class="recipe-divider"></div>
+			</div>
+		</div>
+		<form th:action="@{/recipe.rec.{rcpId}(rcpId=${subRecipe.rcpId})}" method="get">
+    <button type="submit" class="btn-recommend" 
+            th:text="${isRecommended} ? '추천취소' : '추천하기'">
+    </button>
+</form>
+	</div>
+	<script th:if="${loginMessage != null}">
+    alert("로그인 필요");
+</script>
+</body>
+</html>

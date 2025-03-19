@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="css/market.css">
+<script type="text/javascript" src="js/jQuery.js"></script>
+<script type="text/javascript" src="js/market.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-moment"></script>
+</head>
+<body>
+	<div id="marketmaindiv">
+		<table class="up_menutable">
+			<tr>
+				<td id="mainmarkettdo" align="left">
+					<h3>Market</h3>
+				</td>
+				<td align="left" class="inandout">
+					<img alt="메뉴 이미지 어데감?" src="img/icon/showyourcategory.png.png" style="width:25px; height:25px;">
+				</td>
+			</tr>
+		</table>
+		<div class="downbartable" th:insert="~{${sidebarcate}}"></div>
+		<table class="mainsearcharea">
+		    <tr class="mainsearcharea">
+		        <td colspan="8" align="center">
+		            <div class="search-container">
+		                <div class="search-form-wrapper">
+		                    <form action="marketsearchdata.go" method="get" onsubmit="searchkeyword();">
+		                        <table class="searchform">
+		                            <tr>
+		                                <td>
+		                                    <input class="sec_searcharea_main" name="marketsearchingarea" placeholder="상품 검색" autocomplete="off">
+		                                </td>
+		                                <td>
+		                                    <input class="searchBut" type="image" src="img/icon/market_search_icon.png">
+		                                </td>
+		                            </tr>
+		                        </table>
+		                    </form>
+		                    <form action="dataresultch" method="get">
+		                        <table id="priceform" style="display: none;">
+		                            <tr>
+		                                <td>
+		                                    <input class="pricesearchInput" type="text" name="pricesearchinputarea" placeholder="가격 검색" autocomplete="off">
+		                                </td>
+		                                <td>
+		                                    <input class="pricesearchBut" type="image" src="img/icon/market_search_icon.png">
+		                                </td>
+		                            </tr>
+		                        </table>
+		                    </form>
+		                </div>
+		                <select id="selectionsearcher">
+		                    <option value="상품검색">상품검색</option>
+		                    <option value="가격검색">가격검색</option>
+		                </select>
+		            </div>
+		        </td>
+		    </tr>
+		</table>
+		<div class="searchshowpage" th:insert="~{${marketsearchresult2}}"></div>
+	</div>
+</body>
+</html>

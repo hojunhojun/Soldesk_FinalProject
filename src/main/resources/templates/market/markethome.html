@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<table class="markethometable">
+		<tr style="width: 1200px; height:650px;">
+			<td id="searchDTASHOW">
+				<div id="resultshowDIV2" th:insert="~{${trcpma}}"></div>
+				<div id="resultshowDIV">
+					<div th:each="anal :${analDTA}">
+						<table id="resultshowKEYWORD">
+							<tr>
+								<td align="center">
+									<div>
+										<br>
+										<p>
+										<span>검색결과:&nbsp;</span>
+										<span th:text="${anal.inputkey}"></span><br>
+									</div>
+								</td>
+							</tr>
+						</table>
+						<!--  -->
+						<table id="resultshowPGE">
+							<tr>
+								<td>
+									<span>평균가</span><p>
+									<span th:text="${anal.average}"></span>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<span>저가</span><p>
+									<span th:text="${anal.minimum}"></span>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<span>고가</span><p>
+									<span th:text="${anal.maximum}"></span>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<span>편차</span><p>
+									<span th:text="${anal.rounddev}"></span>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<span>데이터</span><p>
+									<span th:text="${anal.count}"></span>
+								</td>
+							</tr>
+						</table>
+					<div class="scroller">
+					    <table id="resultsearchDTAshowtb">
+					        <tr>
+					            <td colspan="3" align="center">
+					                <span style="font-size: x-large;">추천 상품&nbsp;</span>
+					            </td>
+					        </tr>
+					        <tr th:each="chp : ${chp10DTA}">
+					            <td id="resultsearchDTAshowtbtdimg">
+					                <a th:href="${chp.ch10_link}">
+					                    <img alt="" th:src="${chp.ch10_img}">
+					                </a>
+					            </td>
+					            <td id="resultsearchDTAshowtbtdlttilte">
+					                <a th:href="${chp.ch10_link}">
+					                    <span th:utext="${chp.ch10_title}"></span>
+					                </a>
+					            </td>
+					            <td id="resultsearchDTAshowtbtdprice">
+					                <a th:href="${chp.ch10_link}">
+					                    <span th:text="${chp.ch10_lwp}+원"></span>
+					                </a>
+					            </td>
+					        </tr>
+					    </table>
+					</div>
+					</div>
+				</div>
+			</td>
+			<td class="graph_block" th:insert="~{${cheaper}}"></td>
+			<td id="searchrankcontainer">
+					<!-- 검색어 클릭시 이동 기능용 form -->
+				<form action="go.searchranksearch" method="get">
+					<input id="SR_inputarea" name="SR_inputarea" type="hidden">
+					<div id="searchcontainer">
+					</div>
+				</form>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div id="foodGuidePostDetailArea">
+		<table id="foodGuidePostDetailTbl">
+			<tr th:if="${session.loginMember != null}">
+				<td colspan="2" id="btnTd" th:if="${foodGuideCommuPostDetail.writer.id == session.loginMember.id}">
+					<button id="foodGuidePostDeleteGo"
+						th:onclick="deleteFoodGuideCommunityPost([[${foodGuideCommuPostDetail.no}]]);">삭제</button>
+					<button id="foodGuidePostUpdateGo">수정</button>
+				</td>
+			</tr>
+			<tr>
+				<td class="contentTd">
+					<div id="foodGuideBxslider"></div>
+				</td>
+				<td class="contentTd">
+					<table id="foodGuidePostContent">
+						<tr>
+							<td id="foodGuidePostTitle">[[${foodGuideCommuPostDetail.title}]]</td>
+						</tr>
+						<tr>
+							<td id="foodGuidePostTextorComment">
+								<div id="foodGuidePostText" th:utext="${foodGuideCommuPostDetail.text}"></div>
+								<div id="foodGuidePostComments">
+									<div th:if="${foodGuideCommuPostComment != null}">
+										<table th:each="c : ${foodGuideCommuPostComment}">
+											<tr class="commentTbl">
+												<td class="text">
+													[[${c.writer}]] &nbsp;&nbsp;| &nbsp;&nbsp;[[${c.text}]]&nbsp;&nbsp;&nbsp;&nbsp;
+													<button th:if="${session.loginMember != null and c.writer == session.loginMember.id}"
+																		th:onclick="deleteFCommunityPostComment([[${c.no}]]);">삭제</button>
+												</td>
+												<td class="date" th:text="${#dates.format(c.date, 'yyyy-MM-dd')}"></td>
+											</tr>
+											<tr>
+												<td colspan="3" id="replyArea" align="right">
+													<table th:if="${foodGuideCommuPostReply != null}" id="replyTbl">
+														<tr th:each="r : ${foodGuideCommuPostReply}" th:if="${r.parNo == c.no}">
+															<td class="icon"><img src="img/icon/reply_icon.png">
+															</td>
+															<td class="text">
+																[[${r.writer}]] &nbsp;&nbsp;| &nbsp;&nbsp;[[${r.text}]]&nbsp;&nbsp;&nbsp;&nbsp;
+																<button th:if="${session.loginMember != null and r.writer == session.loginMember.id}"
+																		th:onclick="deleteFCommunityPostReply([[${r.no}]]);">삭제</button>
+															</td>
+															<td class="date" th:text="${#dates.format(r.date, 'yyyy-MM-dd')}"></td>
+														</tr>
+														<tr th:if="${session.loginMember != null}">
+															<td class="icon"><img src="img/icon/reply_iconOrange.png">
+															</td>
+															<td colspan="2" id="replyReg">
+																<input>
+																<button th:onclick="regFoodGuideCommunityPostReply([[${c.no}]], [[${token}]], this);">등록</button>
+															</td>
+														</tr>
+													</table>
+												</td>
+											</tr>
+										</table>
+									</div>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td id="foodGuidePostComment">
+								<table id="foodGuidePostCommentInputArea">
+									<tr>
+										<td colspan="2" id="commentOpenArea">
+											<button>댓글 보기</button>
+										</td>
+									</tr>
+									<tr th:if="${session.loginMember != null}" >
+										<td id="foodGuidePostCommentText"><input></td>
+										<td id="regFoodGuidePostComment" align="right">
+											<button th:onclick="regFoodGuideCommunityPostComment([[${foodGuideCommuPostDetail.no}]], 3, [[${token}]]);">등록</button>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+		<div id="foodGuideImgData">
+			<div th:data-img1="${foodGuideCommuPostDetail.img1}"
+				th:data-img2="${foodGuideCommuPostDetail.img2}"
+				th:data-img3="${foodGuideCommuPostDetail.img3}"
+				th:data-img4="${foodGuideCommuPostDetail.img4}"
+				th:data-img5="${foodGuideCommuPostDetail.img5}"></div>
+		</div>
+		
+		<div id="fgCommuUpdateArea" class="fgCommuPopupArea">
+			<form method="post" enctype="multipart/form-data" id="fgCommuUpdateForm">
+				<input name="token" th:value="${token }" type="hidden"> 
+				<input name="no" th:value="${foodGuideCommuPostDetail.no }" type="hidden">
+				<input name="curPage" th:value="${curPage}" type="hidden">
+				<input name="type" value="3" type="hidden">
+				<div id="topSection" class="section">
+					<h2>식재료 가이드 수정</h2>
+					<div class="rightAlien">
+						<button id="closePopup" type="button">
+							<img alt="" src="img/icon/closeButton.png">
+						</button>
+					</div>
+				</div>
+				<div id="titleSection">
+					<input name="title" placeholder="제목을 입력하세요" th:value="${foodGuideCommuPostDetail.title}">
+				</div>
+				<div id="textSection">
+					<textarea name="text" id="fgTextBox" maxlength="750"> [[${foodGuideCommuPostDetailUpdateText}]]</textarea>
+				</div>
+				<div id="fileSection">
+					<div class="label">이미지 등록</div>
+					<table id="imgTbl">
+						<tr>
+							<td class="imgTd">
+								<img th:src="|community.photo/${foodGuideCommuPostDetail.img1}|"></td>
+							<td>
+								<div>파일 수정하기</div>
+								<input type="file" name="file1">
+							</td>
+						</tr>
+						<tr>
+							<td class="line" colspan="2"></td>
+						</tr>
+						<tr th:if="${foodGuideCommuPostDetail.img2 != null}">
+							<td class="imgTd">
+								<img th:src="|community.photo/${foodGuideCommuPostDetail.img2}|">
+							</td>
+							<td>
+								<div>파일 수정하기</div>
+								<input type="file" name="file2">
+							</td>
+						</tr>
+						<tr th:unless="${foodGuideCommuPostDetail.img2 != null}">
+							<td colspan="2"><input type="file" name="file2" class="nullFileInput"></td>
+						</tr>
+						<tr>
+							<td class="line" colspan="2"></td>
+						</tr>
+						<tr th:if="${foodGuideCommuPostDetail.img3 != null}">
+							<td class="imgTd">
+								<img th:src="|community.photo/${foodGuideCommuPostDetail.img3}|">
+							</td>
+							<td>
+								<div>파일 수정하기</div>
+								<input type="file" name="file3">
+							</td>
+						</tr>
+						<tr th:unless="${foodGuideCommuPostDetail.img3 != null}">
+							<td colspan="2"><input type="file" name="file3" class="nullFileInput"></td>
+						</tr>
+						<tr>
+							<td class="line" colspan="2"></td>
+						</tr>
+						<tr th:if="${foodGuideCommuPostDetail.img4 != null}">
+							<td class="imgTd">
+								<img th:src="|community.photo/${foodGuideCommuPostDetail.img4}|">
+							</td>
+							<td>
+								<div>파일 수정하기</div>
+								<input type="file" name="file4">
+							</td>
+						</tr>
+						<tr th:unless="${foodGuideCommuPostDetail.img4 != null}">
+							<td colspan="2"><input type="file" name="file4" class="nullFileInput"></td>
+						</tr>
+						<tr>
+							<td class="line" colspan="2"></td>
+						</tr>	
+						<tr th:if="${foodGuideCommuPostDetail.img5 != null}">
+							<td class="imgTd">
+								<img th:src="|community.photo/${foodGuideCommuPostDetail.img5}|">
+							</td>
+							<td>
+								<div>파일 수정하기</div>
+								<input type="file" name="file5">
+							</td>
+						</tr>
+						<tr th:unless="${foodGuideCommuPostDetail.img5 != null}">
+							<td colspan="2"><input type="file" name="file5" class="nullFileInput"></td>
+						</tr>
+					</table>
+				</div>
+			</form>
+			<div>
+				<button id="fgCommuUpdateBtn" class="fgCommuPopupButton">등록</button>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

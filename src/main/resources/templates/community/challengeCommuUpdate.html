@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form id="challengeUpdateForm" method="post" enctype="multipart/form-data">
+		<table th:each="ccp : ${post}">
+			<tr>
+				<td>게시글 수정하기</td>
+			</tr>
+			<tr>
+				<td>
+					제목 : <input name="title" th:value="${ccp.title}">
+				</td>
+			</tr>
+			<tr>
+				<td>
+					내용 : <textarea name="text" placeholder="내용을 입력하세요"></textarea>
+				</td>
+			</tr>
+			<tr>
+				<td>사진 : 
+					<input name="imgTemp2" type="file">
+					<input name="imgTemp3" type="file">
+					<input name="imgTemp4" type="file">
+					<input name="imgTemp5" type="file">
+				 	<input name="imgTemp6" type="file">
+				</td>
+			</tr>
+			<tr>
+			</tr>
+			<tr>
+				<td><input type="hidden" value="2" name="type"></td>
+				<td><input id="challengeUpdateFormPostInput" type="hidden" name="post" th:value="${ccp.no}"></td>
+				<td><input type="hidden" name="like" th:value="${ccp.like}"></td>
+				<td><input type="hidden" name="token" th:value="${token}"></td>
+			</tr>
+		</table>
+	</form>
+	<div id="challengeUpdateFormBtn">
+		<button>작성하기</button>
+	</div>
+</body>
+</html>

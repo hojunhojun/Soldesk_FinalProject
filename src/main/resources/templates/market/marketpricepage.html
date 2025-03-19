@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Price Charts by Category</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        #chartContainer {
+            position: relative;
+            width: 1000px;
+            height: 400px;
+            margin: 50px auto;
+            background-color: #F5F5DC; /* 컨테이너 배경색 */
+            border-radius: 10px; /* 컨테이너 둥근 모서리 */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 부드러운 그림자 효과 */
+        }
+        canvas {
+            width: 100%;
+            height: 100%;
+        }
+        .control-button {
+            border: none;
+            background-color: #3498db50; /* 버튼 배경색 */
+            color: white; /* 버튼 텍스트 색상 */
+            position: absolute;
+            z-index: 10;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px; /* 버튼 둥근 모서리 */
+            transition: background-color 0.3s ease; /* 호버 효과 추가 */
+        }
+        .control-button:hover {
+            background-color: #2980b9; /* 버튼 호버 시 색상 변경 */
+        }
+        #prevCategory {
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        #nextCategory {
+            bottom: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        #prevChart {
+            top: 50%;
+            left: -80px;
+            transform: translateY(-50%);
+        }
+        #nextChart {
+            top: 50%;
+            right: -80px;
+            transform: translateY(-50%);
+        }
+        #categoryLabel {
+            position: absolute;
+            top: -40px;
+            left: 20px; /* 왼쪽 정렬 */
+            font-size: 24px; /* 텍스트 크기 증가 */
+            font-weight: bold; /* 굵은 텍스트 */
+            color: #2c3e50; /* 텍스트 색상 */
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align:center;">카테고리 상품 가격 변동 추이</h1>
+
+    <div id="chartContainer">
+        <div id="categoryLabel"></div> <!-- 카테고리 이름 표시 -->
+        <canvas id="chartCanvas"></canvas>
+        <button id="prevCategory" class="control-button">⬆️</button>
+        <button id="nextCategory" class="control-button">⬇️</button>
+        <button id="prevChart" class="control-button">⬅️</button>
+        <button id="nextChart" class="control-button">➡️</button>
+    </div>
+
+    <script th:inline="javascript">
+        var priceData = /*[[${PriceChart}]]*/ [];
+
+        // category2를 기준으로 데이터 그룹화
+        var groupedData = priceData.reduce((acc, item) => {
+            if (!acc[item.category2]) {
+                acc[item.category2] = [];
+            }
+            acc[item.category2].push(item);
+            return acc;
+        }, {});
+
+        var category2Keys = Object.keys(groupedData);
+        var currentCategoryIndex = 0;
+        var currentChartIndex = 0;
+
+        function displayChart() {
+            var category2 = category2Keys[currentCategoryIndex];
+            var categoryData = groupedData[category2];
+            
+            document.getElementById('categoryLabel').textContent = category2; // 카테고리 이름 표시
+            
+            var chartCanvas = document.getElementById('chartCanvas');
+            var ctx = chartCanvas.getContext('2d');
+
+            // 기존 차트를 삭제
+            if (window.myChart) {
+                window.myChart.destroy();
+            }
+
+            // 새로운 차트를 생성
+            window.myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: [categoryData[currentChartIndex].priceDate],
+                    datasets: [{
+                        label: '평균가',
+                        data: [categoryData[currentChartIndex].avgprice],
+                        borderColor: 'rgb(75, 192, 192)',
+                        tension: 0.1
+                    },
+                    {
+                        label: '저가',
+                        data: [categoryData[currentChartIndex].lprice],
+                        borderColor: 'rgb(255, 99, 132)',
+                        tension: 0.1
+                    },
+                    {
+                        label: '고가',
+                        data: [categoryData[currentChartIndex].hprice],
+                        borderColor: 'rgb(54, 162, 235)',
+                        tension: 0.1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: categoryData[currentChartIndex].category3
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Price'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                             
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // 초기 차트 표시
+        displayChart();
+
+        // 버튼 클릭 이벤트 핸들러
+        document.getElementById('prevCategory').addEventListener('click', () => {
+            currentCategoryIndex = (currentCategoryIndex - 1 + category2Keys.length) % category2Keys.length;
+            currentChartIndex = 0; // 카테고리 변경 시 첫 번째 차트로 초기화
+            displayChart();
+        });
+
+        document.getElementById('nextCategory').addEventListener('click', () => {
+            currentCategoryIndex = (currentCategoryIndex + 1) % category2Keys.length;
+            currentChartIndex = 0; // 카테고리 변경 시 첫 번째 차트로 초기화
+            displayChart();
+        });
+
+        document.getElementById('prevChart').addEventListener('click', () => {
+            var category2 = category2Keys[currentCategoryIndex];
+            var categoryData = groupedData[category2];
+            
+            currentChartIndex = (currentChartIndex - 1 + categoryData.length) % categoryData.length;
+            displayChart();
+        });
+
+        document.getElementById('nextChart').addEventListener('click', () => {
+            var category2 = category2Keys[currentCategoryIndex];
+            var categoryData = groupedData[category2];
+            
+            currentChartIndex = (currentChartIndex + 1) % categoryData.length;
+            displayChart();
+        });
+    </script>
+</body>
+</html>

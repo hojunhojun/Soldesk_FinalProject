@@ -1,0 +1,578 @@
+@charset "UTF-8";
+
+#siteContentArea #freeCommuArea {
+	width: 100%;
+	font-family: "m";
+}
+
+#freeCommuArea #basicSetting {
+	display: flex;
+	width: 100%;
+}
+
+#freeCommuArea .rightAlien {
+	text-align: right;
+}
+#freeCommuArea #basicSetting #searchArea {
+	width: 20%;
+}
+
+#freeCommuArea #basicSetting #searchForm {
+	width: 100%;
+	height: 35px;
+	border: black solid 3px;
+	border-radius: 5px;
+	font-family: 'm';
+	font-size: 20px;
+	background-color: transparent;
+	align-items: center;
+	display: flex;
+}
+#basicSetting #searchForm input{
+	width: 79%;
+	height: 92%;
+	font-family: 'm';
+	border: none;
+	outline: none;
+	font-size: 18px;
+	background-color: transparent;
+	vertical-align: center;
+}
+#basicSetting #searchForm button{
+	height: 100%;
+	width: 15%;	
+	border: none;
+	background-color: transparent;
+}
+#basicSetting #searchForm button img{
+	width: 100%;	
+}
+
+#freeCommuArea #basicSetting .rightAlien {
+	width: 100%;
+}
+.rightAlien #freePostRegGo{
+	border: black solid 2px;
+	border-radius: 5px;
+	font-family: 'm';
+	font-size: 20px;
+	padding: 5px;
+	margin-right: 10px;
+	background-color: transparent;
+}
+.rightAlien #freePostRegGo:hover{
+	color: #FF6600;
+	border-color: #FF6600;
+}
+#freeCommuArea #cateArea {
+	width: 80%;
+	align-items: center;
+	padding-left: 20px;
+}
+#freeCommuArea #cateArea table{
+	width: 100%;
+	height: 100%;
+	padding: 10px;
+}
+#freeCommuArea #cateArea button{
+	border: black solid 1px;
+	border-radius: 10px;
+	font-size: 15px;
+	font-family: 'm';
+	background-color: white;
+	padding: 5px;
+	margin-left: 20px;
+}
+
+#freeCommuArea #cateArea button:hover{
+	color: #FF6600;
+	border-color: #FF6600;
+}
+
+#freeCommuArea #cateArea #label{
+	font-size: 17px;
+	width: 30%;
+	border-right: black solid 1px;
+}
+
+#freeCommuArea #freeCommuPostArea {
+	width: 100%;
+	margin-top: 30px;
+}
+
+#freeCommuPostArea .postTbl{
+	width: 100%;
+	font-size: 20px;
+	text-align: center;
+	padding: 10px;
+	border-bottom: #9fa1a0 solid 1px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+#freeCommuPostArea #labelTbl{
+	font-size: 25px;
+}
+
+#freeCommuPostArea .postTbl .cate{
+	width: 10%;
+}
+#freeCommuPostArea .postTbl .postTitle{
+	width: 40%;
+	padding-left: 5px;
+}
+#freeCommuPostArea .postTbl .writerId{
+	width: 20%;
+}
+#freeCommuPostArea .postTbl .date{
+	width: 20%;
+}
+#freeCommuPostArea .postTbl .like{
+	width: 10%;
+}
+#freeCommuArea #freePostPage {
+	width: 100%;
+	text-align: center;
+	margin-top: 30px;
+}
+#freeCommuArea #freePostPage a{
+	margin-left: 7px;
+	margin-right: 7px;
+	font-size: 20px;
+	cursor: pointer;
+}
+#freeCommuArea #freePostPage .pageGroup{
+	border: black solid 2px;
+	font-family: 'm';
+	cursor: pointer;
+	padding: 2px;
+	border-radius: 5px;
+}
+#freeCommuArea #freePostPage .pageGroup:hover{
+	color: #FF6600;
+	border-color: #FF6600;
+}
+#freeCommuArea #freePostPage a:hover{
+	color: #FF6600;
+}
+
+#siteContentArea #freeCommuDetailArea {
+	width: 100%;
+	font-family: "m";
+	font-size: 17px;
+}
+#freeCommuDetailArea .section{
+	width: 100%;
+	border-bottom: black solid 1px;	
+}
+#freeCommuDetailArea #titleSection{
+	font-size: 35px;
+	display: flex;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+#freeCommuDetailArea #titleSection #title{
+	width: 80%;
+}
+#freeCommuDetailArea #titleSection #date{
+	font-size: 17px;
+	text-align: right;
+	width: 20%;
+	padding-top: 20px;
+	padding-right: 5px;
+}
+
+#freeCommuDetailArea #topSection{
+	font-size: 20px;
+	height: 40px;
+	display: flex;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+#freeCommuDetailArea #topSection #pphotoDiv{
+	width: 5%;
+	height: 100%;
+	overflow: hidden;
+}
+#freeCommuDetailArea #topSection #pphotoDiv img{
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+#freeCommuDetailArea #topSection #writer{
+	width: 70%;
+	height: 100%;
+	padding : 10px 0;
+	padding-left: 10px;
+}
+#freeCommuDetailArea #topSection #like{
+	width: 25%;
+	height: 100%;
+	display: flex;
+}
+#freeCommuDetailArea #topSection #like #likeText{
+	width: 85%;
+	text-align: right;
+	padding : 10px 0;
+}
+#freeCommuDetailArea #topSection #like #likeImgDiv{
+	width: 15%;
+}
+#freeCommuDetailArea #topSection #like button{
+	width: 100%;
+	border: black solid 2px;
+	border-radius:5px;
+	background-color: transparent;
+}
+#freeCommuDetailArea #topSection #like button:hover{
+	border: #FF6600 solid 3px;
+}
+#freeCommuDetailArea #topSection #like button img{
+	width: 100%;
+}
+
+#freeCommuDetailArea #textSection #text{
+	font-size: 20px;
+	padding: 10px;
+	margin-bottom: 20px;
+}
+#freeCommuDetailArea #textSection #file{
+	font-size: 20px;
+	padding: 10px;
+	display: flex;
+}
+#freeCommuDetailArea #textSection #file div{
+	width: 19%;
+	margin: 10px;
+}
+#freeCommuDetailArea #textSection #file img{
+	width: 100%;
+}
+
+#freeCommuDetailArea #commentSection{
+	font-size: 20px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+#freeCommuDetailArea #commentSection #showComment{
+	border: none;
+	font-family: 'm';
+	font-size: 20px;
+	background-color: transparent;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+#freeCommuDetailArea #commentSection #freeCommuCommentArea{
+	display: none;
+	width: 100%;
+}
+
+#freeCommuCommentArea #freeCommuComments table {
+	width: 100%;
+}
+
+#freeCommuComments .icon {
+	width: 3.5%;
+}
+
+#freeCommuComments .icon img {
+	width: 100%;
+}
+#freeCommuComments .text {
+	width: 80%;
+}
+#freeCommuComments .text button{
+	border-radius: 10px;
+	font-family: 'm';
+	font-size: 15px;
+	border: black solid 2px;
+	font-family: 'm';
+	font-size: 15px;
+	color: black;
+	padding: 3px;
+	margin-left: 10px;
+	background-color: transparent;
+}
+#freeCommuComments .text button:hover{
+	border-color: #FF6600;
+	color: #FF6600;
+}
+#freeCommuComments .date {
+	width: 15%;
+	font-size: 13px;
+	padding-right: 5px;
+	text-align: right;
+}
+
+#freeCommuComments .commentTbl {
+	width: 100%;
+}
+
+#freeCommuComments #replyArea {
+	width: 100%;
+}
+
+#freeCommuComments #replyArea #replyTbl {
+	width: 100%;
+}
+
+#freeCommuComments #replyTbl #replyReg {
+	width: 90%;
+}
+
+#freeCommuComments #replyTbl #replyReg input {
+	width: 70%;
+	border: black solid 1px;
+	border-radius: 5px;
+	font-family: 'm';
+	height: 25px;
+	padding-left: 5px;
+}
+
+#freeCommuComments #replyTbl #replyReg button {
+	border-radius: 10px;
+	border: black solid 2px;
+	font-family: 'm';
+	font-size: 15px;
+	height: 25px;
+	color: black;
+	margin-left: 10px;
+	background-color: transparent;
+}
+#freeCommuComments #replyTbl #replyReg button:hover {
+	border-color: #FF6600;
+	color: #FF6600;
+}
+#freeCommuDetailArea #commentSection #regFreeRegCommentArea{
+	font-size: 20px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	text-align: center;
+}
+#freeCommuDetailArea #commentSection #regFreeRegCommentArea #text{
+	width: 85%;
+	border: black solid 1px;
+	border-radius: 10px;
+	font-family: 'm';
+	font-size: 20px;
+	padding-left: 5px;
+	height: 50px;
+}
+#freeCommuDetailArea #commentSection #regFreeRegCommentArea button {
+	width: 11%;
+	height: 50px;
+	border-radius: 10px;
+	border: black solid 2px;
+	font-family: 'm';
+	font-size: 25px;
+	color: black;
+	background-color: transparent;
+	margin-left: 15px;
+}
+#freeCommuDetailArea #commentSection #regFreeRegCommentArea button:hover {
+	border-color: #FF6600;
+	color: #FF6600;
+}
+#freeCommuDetailArea #goBackFreePostListDiv {
+	display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 100px;
+}
+#goBackFreePostListDiv #goBackFreePostListBtn {
+	width: 20%;
+	border-radius: 10px;
+	border: black solid 2px;
+	background-color: transparent;
+	font-family: 'm';
+	font-size: 22px;
+	padding: 10px;
+	margin-top: 15px;
+}
+#goBackFreePostListDiv #goBackFreePostListBtn:hover {
+	border-color: #FF6600;
+	color: #FF6600;
+}
+#freeCommuDetailArea #btnDiv {
+	text-align: right;
+	padding-bottom: 15px;
+	width: 100%;
+}
+
+#freeCommuDetailArea #btnDiv button {
+	border: black solid 2px;
+	border-radius: 5px;
+	font-family: 'm';
+	font-size: 20px;
+	padding: 5px;
+	margin-right: 10px;
+	background-color: transparent;
+}
+
+#freeCommuDetailArea #btnDiv button:hover {
+	border-color: #FF6600;
+	color: #FF6600;
+}
+.freePostPopupArea {
+	position: fixed;
+	top: -100%;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	background-color: #f9faebCC;
+	text-align: center;
+}
+.freePostPopupArea #freePostPopup {
+	border: #FF6600 solid 6px;
+	border-radius: 10px;
+	background-color: #f9faeb;
+	width: 70%;
+	height: 600px;
+	margin-top: 10%;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 10px;
+}
+
+#freePostPopup .section{
+	width: 100%;
+	display: flex;
+}
+#freePostPopup #topSection{
+	height: 10%;
+}
+
+#freePostPopup #topSection h2{
+	width: 95%;
+	padding-left: 5%;
+}
+#freePostPopup #topSection .rightAlien{
+	width: 5%;
+}
+#freePostPopup #topSection .rightAlien #closePopup {
+	border: none;
+	background-color: transparent;
+	width: 100%;
+}
+#freePostPopup #topSection .rightAlien #closePopup img{
+	width: 100%;
+}
+
+#freePostPopup #titleSection{
+	height: 10%;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+#freePostPopup #titleSection .label{
+	font-size: 20px;
+	padding: 5px;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+#freePostUpdateArea #titleSection .label{
+	padding: 0px;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+#freePostPopup #titleSection select{
+	width: 90%;
+	font-family: 'm';
+	margin-left: 5px;
+	margin-right: 5px;
+	border: black solid 1px;
+	border-radius: 5px;
+	font-size: 18px;
+}
+#freePostPopup #titleSection input{
+	width: 89%;
+	height: 90%;
+	font-family: 'm';
+	margin-left: 10px;
+	border: black solid 1px;
+	border-radius: 5px;
+	font-size: 24px;
+	padding-left: 10px;
+}
+#freePostPopup #textSection {
+	height: 50%;
+	padding-top: 10px;	
+	padding-bottom: 10px;
+	border-bottom: black solid 1.5px;
+}
+
+#freePostPopup #textSection textarea{
+	width: 98%;
+	min-height: 80px;
+	height: 94%;
+	font-family: "m";
+	font-size: 20px;
+	color: #5a4f41;
+	outline: none;
+	border: none;
+	background-color: transparent;
+	padding: 10px;
+	resize: none;
+}
+#freePostPopup #fileSection {
+	height: 10%;
+	padding-top: 10px;	
+	padding-bottom: 10px;
+	border-bottom: black solid 1.5px;
+	text-align: left;
+}
+#freePostPopup #fileSection button{
+	border: black solid 1px;
+	border-radius: 5px;
+	font-family: 'm';
+	padding: 5px;
+	background-color: transparent;
+	font-size: 13px;
+}
+#freePostPopup #fileSection .freeFileHide{
+	display: none;
+}
+
+#freePostPopup #freeCommuPostregBtn {
+	width: 20%;
+	border-radius: 10px;
+	border: black solid 2px;
+	background-color: transparent;
+	font-family: 'm';
+	font-size: 20px;
+	padding: 5px;
+	margin-top: 15px;
+}
+#freePostPopup #freeCommuPostUpdateBtn {
+	width: 20%;
+	border-radius: 10px;
+	border: black solid 2px;
+	background-color: transparent;
+	font-family: 'm';
+	font-size: 20px;
+	padding: 5px;
+	margin-top: 15px;
+}
+#freePostPopup  .imgTd img{
+	width: 70px;
+	height: 70px;
+}
+#freePostPopup  #fileSection #fileTbl{
+	width: 100%;
+}
+#freePostPopup  #fileSection #fileTbl .fileTd{
+	width: 20%;
+}
+#freePostPopup  #fileSection input{
+	width: 50%;
+}
+#freePostPopup  #fileSection .nullFileInput{
+	width: 80%;
+}
+
+#freePostPopup  #fileSection img{
+	width: 50px;
+	height: 50px;
+}

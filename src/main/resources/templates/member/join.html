@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<head>
+<meta charset="UTF-8">
+<title>GBRAUCP</title>
+</head>
+<body>
+	<table class="memberInfoArea">
+		<tr>
+			<td align="center">
+				<form action="join.do" method="post" enctype="multipart/form-data" 
+					onsubmit="return joinCheck(this);" name="joinForm">
+					<table class="memberInfoTbl">
+						<tr>
+							<td class="memberInfoTd" align="center" style="font-size:22px;">
+								회원가입
+							</td>
+						</tr>
+						<tr>
+							<td class="memberInfoTd">
+								&nbsp;&nbsp;ID : <input id="joinIdInput" name="id" maxlength="10" autocomplete="off" placeholder="id">
+							</td>
+						</tr>
+						<tr>
+							<td class="memberInfoTd">
+								&nbsp;&nbsp;PassWord : <input name="pw" maxlength="10" autocomplete="off" type="password" placeholder="pw">
+							</td>
+						</tr>
+						<tr>
+							<td class="memberInfoTd">
+								&nbsp;&nbsp;PassWord 확인 : <input name="pwChk" maxlength="10" autocomplete="off" type="password" placeholder="pw확인">
+							</td>
+						</tr>
+						<tr>
+							<td class="memberInfoTd">
+								&nbsp;&nbsp;이름 : <input name="name" maxlength="10" autocomplete="off" placeholder="이름">
+							</td>
+						</tr>
+						<tr>
+							<td class="memberInfoTd">
+								&nbsp;&nbsp;닉네임 : <input id="joinNickInput" name="nick" maxlength="15" autocomplete="off" placeholder="닉네임">
+							</td>
+						</tr>
+						<tr>
+							<td class="memberInfoTd4">
+								&nbsp;&nbsp;프로필 사진 : <input name="photoTemp" type="file" style="color:#4A6AEC;">
+							</td>
+						</tr>
+						<tr>
+							<td class="memberInfoTd">
+								&nbsp;&nbsp;생년월일 : 
+								<select name="y" class="memberInfoTdSelect">
+									<option th:each="y : ${#numbers.sequence(curYear, curYear-50, -1)}" th:text="${y}"></option>
+								</select> 년&nbsp;
+								<select name="m" class="memberInfoTdSelect">
+									<option th:each="m : ${#numbers.sequence(1, 12)}" th:text="${m}"></option>
+								</select> 월&nbsp;
+								<select name="d" class="memberInfoTdSelect">
+									<option th:each="d : ${#numbers.sequence(1, 31)}" th:text="${d}"></option>
+								</select> 일
+							</td>
+						</tr>
+						<tr>
+							<td class="memberInfoTd2">
+        						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        						<input class="memberAddr1Input" readonly="readonly" name="addr1" autocomplete="off" placeholder="우편번호">
+    						</td>
+    					</tr>
+    					<tr>
+    						<td class="memberInfoTd2">
+    							&nbsp;&nbsp;주소 : <input class="memberAddr2Input" readonly="readonly" name="addr2" autocomplete="off" placeholder="주소">
+    						</td>
+    					</tr>
+    					<tr>
+    						<td class="memberInfoTd3">
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<input class="memberAddr3Input" name="addr3" autocomplete="off" placeholder="상세주소" >
+    						</td>
+    					</tr>
+						<tr>
+							<td align="center" class="memberInfoButtonTd">
+								<button>가입</button>
+							</td>
+						</tr>
+					</table>
+				</form>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

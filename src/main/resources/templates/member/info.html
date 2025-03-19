@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<table class="memberInfoArea">
+		<tr>
+			<td align="center">
+				<table class="memberInfoTbl">
+				<form action="member.update.go" method="post">
+					<tr>
+						<td align="center" class="memberInfoTd" style="font-size: 22px;">회원정보</td>
+					</tr>
+					<tr>
+						<td align="center" class="memberInfoImgTd"><img th:src="@{|member.photo/${session.loginMember.pphoto}}|"></td>
+					</tr>
+					<tr>
+						<td class="memberInfoTd" th:text="|&nbsp;&nbsp;ID : ${session.loginMember.id}|"></td>
+					</tr>
+					<tr>
+						<td class="memberInfoTd">&nbsp;&nbsp;PW : ********</td>
+					</tr>
+					<tr>
+						<td class="memberInfoTd" th:text="|&nbsp;&nbsp;이름 : ${session.loginMember.name}|"></td>
+					</tr>
+					<tr>
+						<td class="memberInfoTd" th:text="|&nbsp;&nbsp;닉네임 : ${session.loginMember.nick}|"></td>
+					</tr>
+					<tr>
+						<td class="memberInfoTd" th:text="|&nbsp;&nbsp;생년월일 : ${#dates.format(session.loginMember.bir,'yyyy-MM-dd')}|"></td>
+					</tr>
+					<tr>
+						<td class="memberInfoAddrTd" th:text="|&nbsp;&nbsp;우편번호 : ${addr1}|"></td>
+					</tr>
+					<tr>
+						<td class="memberInfoAddrTd" th:text="|&nbsp;&nbsp;주소 : ${addr2}|"></td>
+					</tr>
+					<tr>
+					<td class="memberInfoAddrTd" th:text="|&nbsp;&nbsp;상세주소 : ${addr3}|"></td>
+						</tr>
+					<tr>
+						<td align="center" class="memberInfoButtonTd">
+							<button class="infoBtn">수정</button> &nbsp;&nbsp;&nbsp;&nbsp;
+				</form>
+							<button class="infoBtn" onclick="byeDo();">탈퇴</button>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

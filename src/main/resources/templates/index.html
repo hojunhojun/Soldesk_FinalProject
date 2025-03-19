@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>RecipeToYou</title>
+<link rel="stylesheet" href="css/index.css">
+<link rel="stylesheet" href="css/home.css">
+<link rel="stylesheet" href="css/member.css">
+<link rel="stylesheet" href="css/recipe.css">
+<link rel="stylesheet" href="css/recipeDetail.css">
+<link rel="stylesheet" href="css/arcade.css">
+<link rel="stylesheet" href="css/commu.css">
+<link rel="stylesheet" href="css/foodCommu.css">
+<link rel="stylesheet" href="css/FreeCommu.css">
+<link rel="stylesheet" href="css/challengeCommu.css">
+<script
+	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script type="text/javascript" src="js/jQuery.js"></script>
+<script type="text/javascript" src="js/market.js"></script>
+<script type="text/javascript" src="js/rty_commu.js"></script>
+<script type="text/javascript" src="js/rty_arcade.js"></script>
+<script type="text/javascript" src="js/rty_jQuery.js"></script>
+<script type="text/javascript" src="js/move.js"></script>
+<script type="text/javascript" src="js/leeValidChecker_v1.0.js"></script>
+<script type="text/javascript" src="js/validCheck.js"></script>
+<script src="http://ip:port/socket.io/socket.io.js"></script>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bxslider@4.2.17/dist/jquery.bxslider.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/bxslider@4.2.17/dist/jquery.bxslider.min.js"></script>
+</head>
+<body>
+	<div id="siteWrapper">
+		<div id="siteTitleArea">
+			<div id="siteLogo">
+				<a href="index.do"><img src="img/logo.png" id="logoImg"></a>
+			</div>
+			<div id="siteMenuArea">
+				<div class="menu" id="recipe">
+					<a href="recipe.go">RECIPE</a>
+					<div class="smallMenusArea">
+						<table>
+							<tr>
+								<td><a href="/recipe.go?category=밥">밥</a></td>
+								<td><a href="/recipe.go?category=국&찌개">국&찌개</a></td>
+								<td><a href="/recipe.go?category=반찬">반찬</a></td>
+								<td><a href="/recipe.go?category=스페셜">스페셜</a></td>
+								<td><a href="/recipe.go?category=후식">후식</a></td>
+								<td><a href="/recipe.go?category=기타">기타</a></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<div class="menu" id="community">
+					<a href="free.community.go">COMMUNITY</a>
+					<div class="smallMenusArea">
+						<table> 
+							<tr>
+								<td><a href="free.community.go">자유게시판</a></td>
+								<td><a href="challenge.community.go">도전요리 게시판</a></td>
+								<td><a href="foodguide.community.go">꿀팁 보관소</a></td>
+								<td></td>
+
+							</tr>
+						</table>
+					</div>
+				</div>
+
+				<div class="menu" id="arcade">
+					<a href="arcade.go">ARCADE</a>
+					<div class="smallMenusArea">
+						<table>
+							<tr>
+								<td><a href="arcade.roulette.go">돌림판</a></td>
+								<td><a href="arcade.quiz.go">퀴즈</a></td>
+								<td></td>
+								<td></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<div class="menu">
+					<a href="market.go">MARKET</a>
+				</div>
+			</div>
+			<div id="siteLoginArea" th:insert="~{${loginPage}}"></div>
+		</div>
+		<div id="siteContentArea" th:insert="~{${contentPage}}"></div>
+		<div id="siteFooterArea">
+			<div id="siteFooterContent">
+				<div id="team">
+					<img alt="팀 로고" src="img/teamLogo.png">
+					<div>팀명 : 웅웅</div>
+				</div>
+				<div id="members">
+					<div class="member">
+						<strong>김도영</strong>
+						ehdud101227@gmail.com 
+						<a href="https://github.com/ehdud1012">GitHub</a>
+					</div>
+					<div class="member">
+						<strong>김민규</strong>
+						dvhafly87@gmail.com 
+						<a href="https://github.com/dvhafly87">GitHub</a>
+					</div>
+					<div class="member">
+						<strong>이호준</strong>
+						1134hu@naver.com 
+						<a href="https://github.com/hojunhojun">GitHub</a>
+					</div>
+					<div class="member">
+						<strong>장지훈</strong>
+						jgh131200@naver.com
+						<a href="https://github.com/cuma-c">GitHub</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,586 @@
+@charset "UTF-8";
+
+#siteContentArea #foodGuideArea {
+	width: 100%;
+	font-family: "m";
+}
+
+#foodGuideArea .rightAlien {
+	text-align: right;
+}
+
+#foodGuideArea #basicSetting {
+	display: flex;
+}
+
+#foodGuideArea #basicSetting #searchForm {
+	width: 80%;
+}
+
+#foodGuideArea #basicSetting .rightAlien {
+	width: 20%;
+}
+
+#foodGuideArea #basicSetting #searchDiv {
+	width: 25%;
+	height: 35px;
+	border: black solid 3px;
+	border-radius: 5px;
+	font-family: 'm';
+	font-size: 20px;
+	background-color: transparent;
+	align-items: center;
+	display: flex;
+}
+
+#basicSetting #searchDiv input {
+	width: 79%;
+	height: 92%;
+	font-family: 'm';
+	border: none;
+	outline: none;
+	font-size: 18px;
+	background-color: transparent;
+}
+
+#basicSetting #searchDiv button {
+	height: 100%;
+	width: 15%;
+	border: none;
+	background-color: transparent;
+}
+
+#basicSetting #searchDiv button img {
+	width: 100%;
+}
+
+.rightAlien #foodGuidePostRegGo {
+	border: black solid 2px;
+	border-radius: 5px;
+	font-family: 'm';
+	font-size: 20px;
+	padding: 5px;
+	margin-right: 10px;
+	background-color: transparent;
+}
+
+.rightAlien #foodGuidePostRegGo:hover {
+	color: #FF6600;
+	border-color: #FF6600;
+}
+
+#foodGuideArea #foodGuidePosts {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	padding-top: 30px;
+	flex-wrap: wrap;
+}
+
+#foodGuideArea .foodGuideTbl {
+	width: 30%;
+	height: 350px;
+	margin: 10px;
+	padding: 3px;
+	border: black solid 1.5px;
+	border-radius: 5px;
+}
+
+.foodGuideTbl  .imgDiv {
+	width: 95%;
+	height: 80%;
+	overflow: hidden;
+	margin: 0 auto;
+}
+
+.imgDiv img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.foodGuideTbl .title {
+	height: 12%;
+	font-size: 20px;
+	padding-top: 10px;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.foodGuideTbl .date {
+	height: 3%;
+	font-size: 10px;
+	text-align: right;
+}
+
+#foodGuideArea #paginationArea {
+	width: 100%;
+	text-align: center;
+	margin-top: 20px;
+	margin-bottom: 100px;
+}
+
+#foodGuideArea #paginationArea button {
+	color: black;
+	border: black solid 2px;
+	border-radius: 5px;
+	font-family: 'm';
+	font-size: 20px;
+	padding: 5px;
+	margin-right: 10px;
+	background-color: transparent;
+}
+
+#foodGuideArea #paginationArea button:hover {
+	color: #FF6600;
+	border-color: #FF6600;
+}
+
+#fgCommuRegArea .fgImgHide {
+	display: none;
+}
+
+#fgCommuUpdateArea #imgTbl {
+	width: 100%;
+	height: 100%;
+}
+
+#fgCommuUpdateArea #imgTbl div {
+	text-align: left;
+	padding: 10px;
+}
+
+#fgCommuUpdateArea #imgTbl .line {
+	border-bottom: #9fa1a0 solid 1px;
+	padding-top: 10px;
+}
+
+#fgCommuUpdateArea #imgTbl td {
+	padding-top: 10px;
+}
+
+#fgCommuUpdateArea #imgTbl .imgTd {
+	width: 20%;
+	height: 20%;
+}
+
+#fgCommuUpdateArea #imgTbl img {
+	width: 100%;
+	height: 100%;
+}
+
+#fgCommuUpdateArea #imgTbl input {
+	border: 1px solid black;
+	border-radius: 10px;
+	height: 30px;
+	padding: 5px;
+	width: 80%;
+	font-family: "m";
+	font-size: 20px;
+	background-color: white;
+}
+
+#fgCommuUpdateArea #imgTbl .nullFileInput {
+	border: 1px solid black;
+	border-radius: 10px;
+	height: 30px;
+	padding: 5px;
+	margin-left: 8px;
+	width: 95%;
+	font-family: "m";
+	font-size: 20px;
+	background-color: white;
+}
+
+.fgCommuPopupArea {
+	position: fixed;
+	top: 170px;
+	right: -650px;
+	text-align: center;
+	width: 30%;
+	height: 650px;
+	overflow-y: scroll;
+	border: #FF6600 solid 4px;
+	font-family: "m";
+	font-size: 20px;
+	padding: 20px;
+	transition: all 0.5s ease-out;
+	border-radius: 10px;
+	background-color: #f9faeb;
+}
+
+.fgCommuPopupArea::-webkit-scrollbar {
+	display: none;
+}
+
+.fgCommuPopupArea #topSection {
+	height: 10%;
+	width: 100%;
+	display: flex;
+}
+
+.fgCommuPopupArea #topSection h2 {
+	width: 95%;
+	padding-left: 5%;
+}
+
+.fgCommuPopupArea #topSection .rightAlien {
+	width: 10%;
+}
+
+.fgCommuPopupArea #topSection .rightAlien #closePopup {
+	border: none;
+	background-color: transparent;
+	width: 100%;
+}
+
+.fgCommuPopupArea #topSection .rightAlien #closePopup img {
+	width: 100%;
+}
+
+.fgCommuPopupArea .fgCommuPopupButton {
+	width: 30%;
+	border-radius: 10px;
+	border: black solid 2px;
+	background-color: transparent;
+	font-family: 'm';
+	font-size: 20px;
+	padding: 5px;
+	margin-top: 15px;
+}
+
+.fgCommuPopupArea .fgCommuPopupButton:hover {
+	border-color: #FF6600;
+	color: #FF6600;
+}
+
+.fgCommuPopupArea .label {
+	text-align: left;
+	margin-top: 15px;
+	margin-bottom: 5px;
+}
+
+.fgCommuPopupArea input {
+	border: black solid 1px;
+	border-radius: 10px;
+	height: 30px;
+	padding: 5px;
+	width: 95%;
+	font-family: "m";
+	font-size: 20px;
+	background-color: white;
+}
+
+.fgCommuPopupArea #titleSection {
+	width: 100%;
+	padding-bottom: 10px;
+}
+
+.fgCommuPopupArea #textSection {
+	width: 100%;
+	height: 200px;
+	padding-top: 10px;
+	border-top: black solid 1.5px;
+	padding-bottom: 12px;
+	border-bottom: black solid 1.5px;
+}
+
+.fgCommuPopupArea #fgTextBox {
+	width: 95%;
+	height: 90%;
+	font-family: "m";
+	font-size: 20px;
+	color: #5a4f41;
+	outline: none;
+	background-color: transparent;
+	padding: 10px;
+	resize: none;
+	border: none;
+}
+
+.fgCommuPopupArea #fileSection {
+	width: 100%;
+	padding-top: 5px;
+	padding-bottom: 10px;
+	border-bottom: black solid 1.5px;
+}
+
+.fgCommuPopupArea #fileSection input {
+	width: 45.5%;
+	margin-right: 10px;
+	margin-bottom: 5px;
+}
+
+.fgCommuPopupArea #fileSection #file1 {
+	width: 75%;
+	margin-bottom: 10px;
+}
+
+.fgCommuPopupArea #fileSection button {
+	color: #FF6600;
+	width: 20%;
+	border: black solid 1px;
+	border-radius: 5px;
+	font-family: "m";
+	font-size: 15px;
+	padding: 3px;
+	background-color: transparent;
+}
+
+#siteContentArea #foodGuidePostDetailArea {
+	width: 100%;
+	margin-top: 30px;
+	height: 600px;
+	font-family: "m";
+}
+
+#foodGuidePostDetailArea #foodGuidePostDetailTbl {
+	width: 100%;
+	height: 100%;
+}
+
+#foodGuidePostDetailTbl #btnTd {
+	text-align: right;
+	padding-bottom: 15px;
+}
+
+#btnTd button {
+	border: black solid 2px;
+	border-radius: 5px;
+	font-family: 'm';
+	font-size: 20px;
+	padding: 5px;
+	margin-right: 10px;
+	background-color: transparent;
+}
+
+#btnTd button:hover {
+	border-color: #FF6600;
+	color: #FF6600;
+}
+
+#foodGuidePostDetailTbl .contentTd {
+	width: 40%;
+	height: 100%;
+	vertical-align: top;
+}
+
+.contentTd #foodGuidePostContent {
+	width: 100%;
+	height: 92%;
+	padding: 5px;
+	border: black solid 2px;
+	border-radius: 10px;
+	margin-left: 10px;
+}
+
+#foodGuidePostContent #foodGuidePostTitle {
+	font-family: 'm';
+	font-size: 23px;
+	padding-left: 20px;
+	height: 17%;
+	border-bottom: black solid 1.5px;
+}
+
+#foodGuidePostContent #foodGuidePostTextorComment {
+	font-family: 'm';
+	font-size: 18px;
+	height: 70%;
+}
+
+#foodGuidePostTextorComment #foodGuidePostText {
+	height: 100%;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	overflow-y: scroll;
+	padding: 10px;
+	padding-top: 20px;
+}
+
+#foodGuidePostTextorComment #foodGuidePostComments {
+	display: none;
+	height: 100%;
+	overflow-y: scroll;
+	background-color: #fff0b44D;
+}
+
+#foodGuidePostText::-webkit-scrollbar {
+	display: none;
+}
+
+#foodGuidePostComments::-webkit-scrollbar {
+	display: none;
+}
+
+#foodGuidePostContent #foodGuidePostComment {
+	height: 25%;
+	width: 100%;
+}
+
+#foodGuidePostComment #foodGuidePostCommentInputArea {
+	height: 100%;
+	width: 100%;
+}
+
+#foodGuidePostCommentInputArea #commentOpenArea {
+	height: 20%;
+	margin-bottom: 10px;
+	width: 100%;
+	text-align: left;
+}
+
+#commentOpenArea button {
+	border: none;
+	font-family: 'm';
+	font-size: 15px;
+	background-color: transparent;
+}
+
+#foodGuidePostCommentInputArea #foodGuidePostCommentText {
+	width: 90%;
+	height: 75%;
+}
+
+#foodGuidePostCommentText input {
+	width: 100%;
+	height: 70%;
+	border-radius: 10px;
+	font-family: 'm';
+}
+
+#foodGuidePostCommentInputArea #regFoodGuidePostComment {
+	width: 10%;
+	height: 75%;
+}
+
+#regFoodGuidePostComment button {
+	height: 80%;
+	width: 80%;
+	border-radius: 10px;
+	border: black solid 2px;
+	font-family: 'm';
+	font-size: 15px;
+	color: black;
+	background-color: transparent;
+}
+
+#regFoodGuidePostComment button:hover {
+	border-color: #FF6600;
+	color: #FF6600;
+}
+
+#foodGuidePostDetailTbl #foodGuideBxslider {
+	width: 100%;
+	height: 550px;
+	text-align: center;
+	border: black solid 3px;
+}
+
+#foodGuideBxslider div {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	margin: 0 auto;
+}
+
+#foodGuideBxslider img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+#foodGuideBxslider #foodGuideImgData {
+	display: none;
+}
+
+#foodGuidePostTextorComment #foodGuidePostComments {
+	width: 100%;
+	color: black;
+}
+
+#foodGuidePostComments table {
+	width: 100%;
+	margin-top: 5px;
+	padding-left: 5px;
+}
+
+#foodGuidePostComments .icon {
+	width: 7%;
+}
+
+#foodGuidePostComments .icon img {
+	width: 100%;
+}
+
+#foodGuidePostComments .text {
+	width: 70%;
+}
+
+#foodGuidePostComments .text button {
+	border-radius: 10px;
+	font-family: 'm';
+	font-size: 15px;
+	border: black solid 2px;
+	font-family: 'm';
+	font-size: 15px;
+	color: black;
+	padding: 3px;
+	margin-left: 10px;
+	background-color: transparent;
+}
+
+#foodGuidePostComments .text button:hover {
+	border-color: #FF6600;
+	color: #FF6600;
+}
+
+#foodGuidePostComments .date {
+	width: 18%;
+	font-size: 10px;
+	padding-right: 5px;
+	text-align: right;
+}
+
+#foodGuidePostComments #commentTbl {
+	width: 100%;
+	border-bottom: white solid 1px;
+}
+
+#foodGuidePostComments #replyArea {
+	width: 100%;
+}
+
+#foodGuidePostComments #replyArea #replyTbl {
+	width: 95%;
+}
+
+#foodGuidePostComments #replyTbl #replyReg {
+	width: 90%;
+}
+
+#foodGuidePostComments #replyTbl #replyReg input {
+	width: 70%;
+	height: 20px;
+	border: black solid 1px;
+	border-radius: 5px;
+	font-family: 'm';
+	padding-left: 5px;
+}
+
+#foodGuidePostComments #replyTbl #replyReg button {
+	border-radius: 10px;
+	font-family: 'm';
+	font-size: 15px;
+	border: black solid 2px;
+	font-family: 'm';
+	font-size: 15px;
+	color: black;
+	padding: 3px;
+	margin-left: 10px;
+	background-color: transparent;
+}
+
+#foodGuidePostComments #replyTbl #replyReg button:hover {
+	border-color: #FF6600;
+	color: #FF6600;
+}

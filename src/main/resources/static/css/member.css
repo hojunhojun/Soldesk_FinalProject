@@ -1,0 +1,305 @@
+@charset "UTF-8";
+
+#siteLoginArea #login {
+	text-align: center;
+	width: 100%;
+	padding-top: 20px;
+}
+
+#login button {
+	width: 80%;
+	padding: 10px;
+	font-family: "a";
+	background-color: #FF6600;
+	font-size: 18px;
+	border: none;
+	border-radius: 10px;
+}
+
+#login a{
+	font-size: 13px;
+}
+
+#loginTbl {
+	position: fixed;
+	top: 130px;
+	right: -400px;
+	border: #FF6600 solid 4px;
+	width: 230px;
+	font-family: "m";
+	padding-top: 10px;
+	transition: all 0.5s ease-out;
+	border-radius: 10px;
+	background-color: #f9faeb;
+}
+
+#loginTbl div {
+	margin-bottom: 10px;
+}
+#loginTbl input {
+	border: black solid 1px;
+	border-radius: 10px;
+	height: 20px;
+	padding: 5px;
+	width: 190px;
+	font-family: "m";
+}
+
+#loginTbl button {
+	border: none;
+	background-color: #FF6600;
+	padding: 5px;
+	width: 150px;
+	border-radius: 10px;
+	font-family: "m";
+}
+
+#loginedTbl {
+	margin-top: 3px;
+	margin-right: 100px;
+	border: #FF6600 solid 2px;
+	border-radius: 10px;
+	width: 100%;
+	font-family: "m";
+	background-color: #FFF8E1;
+	padding: 5px 10px 5px;
+}
+
+.loginedImgTd {
+	width: 50px;
+}
+
+.loginedImgTd img {
+	margin-top: 5px;
+	max-width: 50px;
+	border-radius: 5px;
+	border: black solid 1px;
+}
+
+.loginedMiddle {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.badgeImg {
+	padding-left: 15px;
+	padding-bottom: 5px;
+    max-width: 40px;
+    width: 13%;
+    height: auto;
+    margin-right: 10px;
+}
+
+.welcomeText {
+    width: 87%;
+    font-size: 16px;
+    white-space: nowrap;
+}
+
+.loginedBottomTd {
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* 버튼 사이 여백 */
+    margin: 0 5px;  /* 좌우 여백 추가 (버튼 간격 조절) */
+}
+.loginedBottomTd2 {
+	width: 40%;
+	border-radius: 5px;
+	background-color: #FF6600;
+	padding: 5px 0px;
+}
+
+#infoCheckTbl {
+	border-radius: 5px;
+	width: 30%;
+	border: #FF6600 solid 2px;
+}
+
+#infoCheckTbl button {
+	border: black solid 2px;
+	border-radius: 5px;
+	font-family: 'm';
+	font-size: 20px;
+	padding: 5px;
+	background-color: transparent;
+}
+
+#infoCheckTbl input {
+	height: 50%;
+	border-radius: 5px;
+	width: 50%;
+	font-family: 'm';
+}
+
+.infoCheckTd {
+	height: 50px;
+	font-family: 'm';
+	font-size: 20px;
+}
+
+.infoCheckTd button:hover {
+	color: #FF6600;
+	border-color: #FF6600 !important;
+}
+
+#infoCheckArea {
+	width: 100%;
+}
+
+.memberInfoArea {
+	width: 100%;
+}
+
+.memberInfoTbl {
+	width: 40%;
+	border-radius: 10px;
+	border: #FF6600 solid 3px;
+	font-family: 'm';
+	background-color: #FFF8E1;
+}
+
+.memberInfoTd input {
+	height: 75%;
+	width: 30%;
+	font-family: 'm';
+	border: none;
+    background-color: transparent;
+    outline: none;
+    border-bottom: 2px solid black;
+}
+
+.memberInfoTd4 input {
+	height: 75%;
+	width: 30%;
+	font-family: 'm';
+	border: none;
+    background-color: transparent;
+    outline: none;
+}
+
+.memberInfoAddrTd input {
+	height: 75%;
+	width: 70%;
+	font-family: 'm';
+	border: none;
+    background-color: transparent;
+    outline: none;
+    border-bottom: 2px solid black;
+}
+
+.memberInfoTd {
+	padding-top: 5px;
+	padding-bottom: 5px;
+	height: 30px;
+	border-bottom: #FFCC80 solid 2px; 
+}
+.memberInfoTd4 {
+	padding-top: 5px;
+	padding-bottom: 5px;
+	height: 30px;
+	border-bottom: #FFCC80 solid 2px; 
+}
+
+.memberAddr1Input, .memberAddr2Input, .memberAddr3Input {
+    width: 100%;
+}
+
+
+.memberInfoTd2 {
+	padding-top: 5px;
+	padding-bottom: 5px;
+	height: 30px;
+}
+
+.memberInfoTd2 input {
+	border: none;
+    background-color: transparent;
+    outline: none;
+	height: 75%;
+	width: 65%;
+	font-family: 'm';
+	border-bottom: 2px solid black;
+}
+.memberInfoTd3 {
+	padding-top: 5px;
+	padding-bottom: 5px;
+	height: 30px;
+	border-bottom: #FFCC80 solid 2px; 
+}
+
+.memberInfoTd3 input {
+	border: none;
+    background-color: transparent;
+    outline: none;
+	height: 75%;
+	width: 65%;
+	font-family: 'm';
+	border-bottom: 2px solid black;
+}
+
+.memberInfoAddrTd {
+	padding-top: 5px;
+	padding-bottom: 5px;
+	height: 30px;
+	border-bottom: #FFCC80 solid 2px;
+}
+
+.memberInfoImgTd {
+	width: 30%;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	border-bottom: #FFCC80 solid 2px;
+}
+
+.memberInfoImgTd img {
+	max-width: 200px;
+}
+
+
+.memberInfoTd button {
+	border: black solid 2px;
+	border-radius: 5px;
+	font-family: 'm';
+	font-size: 20px;
+	padding: 5px;
+	background-color: transparent;
+}
+
+.memberInfoButtonTd {
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.memberInfoButtonTd button {
+	border: black solid 2px;
+	border-radius: 5px;
+	font-family: 'm';
+	font-size: 20px;
+	padding: 5px;
+	background-color: transparent;
+}
+
+#profile-preview {
+    width: 100px; /* 너비 */
+    height: 100px; /* 높이 */
+    object-fit: cover; /* 비율 유지하며 채우기 */
+    border-radius: 10px; /* 둥근 모서리 */
+    display: none; /* 초기에는 숨김 */
+}
+
+.memberInfoTdSelect {
+	background-color: transparent;
+	border: none;
+	border-bottom: black solid 2px;
+	font-family: "m";
+}
+
+.memberInfoButtonTd:hover {
+	color: #FF6600;
+	border-color: #FF6600;
+}
+
+.infoBtn:hover{
+	color: #FF6600;
+	border-color: #FF6600;
+}

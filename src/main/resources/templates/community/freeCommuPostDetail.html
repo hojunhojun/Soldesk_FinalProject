@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div id="freeCommuDetailArea">
+		<div id="btnDiv"
+			th:if="${session.loginMember != null and freeCommuPostDetail.writer.id == session.loginMember.id}">
+			<button id="freePostDeleteGo"
+				th:onclick="freeCommunityPostDelete([[${freeCommuPostDetail.no}]]);">삭제</button>
+			<button id="freePostUpdateGo">수정</button>
+		</div>
+		<div id="titleSection" class="section">
+			<div id="title">[ [[${freeCommuPostDetail.cate}]] ]
+				&nbsp;&nbsp;[[${freeCommuPostDetail.title}]]</div>
+			<div id="date">[[${freeCommuPostDetail.date}]]</div>
+		</div>
+		<div id="topSection" class="section">
+			<div id="pphotoDiv">
+				<img th:src="@{|member.photo/${freeCommuPostDetail.writer.pphoto}}|">
+			</div>
+			<div id="writer">[[${freeCommuPostDetail.writer.nick}]]</div>
+			<div id="like">
+				<div id="likeText">추천 수
+					&nbsp;&nbsp;[[${freeCommuPostDetail.like}]]
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+				<div id="likeImgDiv">
+					<button th:if="${isLiked == 1}"
+						th:onclick="connectFreeCommuPostLike([[${freeCommuPostDetail.no}]], 1, [[${token}]]);">
+						<img alt="" src="img/icon/like.png">
+					</button>
+					<button th:if="${isLiked == 0}"
+						th:onclick="connectFreeCommuPostLike([[${freeCommuPostDetail.no}]], 1, [[${token}]]);">
+						<img alt="" src="img/icon/unlike.png">
+					</button>
+				</div>
+			</div>
+		</div>
+		<div id="textSection" class="section">
+			<div id="text" th:utext="${freeCommuPostDetail.text}"></div>
+			<div id="file">
+				<div th:if="${freeCommuPostDetail.img1 != null}">
+					<img th:src="|community.photo/${freeCommuPostDetail.img1}|">
+				</div>
+				<div th:if="${freeCommuPostDetail.img2 != null}">
+					<img th:src="|community.photo/${freeCommuPostDetail.img2}|">
+				</div>
+				<div th:if="${freeCommuPostDetail.img3 != null}">
+					<img th:src="|community.photo/${freeCommuPostDetail.img3}|">
+				</div>
+				<div th:if="${freeCommuPostDetail.img4 != null}">
+					<img th:src="|community.photo/${freeCommuPostDetail.img4}|">
+				</div>
+				<div th:if="${freeCommuPostDetail.img5 != null}">
+					<img th:src="|community.photo/${freeCommuPostDetail.img5}|">
+				</div>
+			</div>
+		</div>
+		<div id="commentSection" class="section">
+			<button id="showComment">댓글 보기</button>
+			<div id="freeCommuCommentArea">
+				<div th:if="${freeCommuPostComment != null}" id="freeCommuComments">
+					<table class="commentTbl" th:each="c : ${freeCommuPostComment}">
+						<tr>
+							<td class="text">[[${c.writer}]]
+								&nbsp;&nbsp;|&nbsp;&nbsp;[[${c.text}]]&nbsp;&nbsp;&nbsp;&nbsp;
+								<button
+									th:if="${session.loginMember != null and c.writer == session.loginMember.id}"
+									th:onclick="deleteFCommunityPostComment([[${c.no}]]);">삭제</button>
+							</td>
+							<td class="date" th:text="${#dates.format(c.date, 'yyyy-MM-dd')}"></td>
+						</tr>
+						<tr>
+							<td id="replyArea" colspan="3">
+								<table th:if="${freeCommuPostReply != null}" id="replyTbl">
+									<tr th:each="r : ${freeCommuPostReply}"
+										th:if="${r.parNo == c.no}">
+										<td class="icon"><img src="img/icon/reply_iconOrange.png"></td>
+										<td class="text">[[${r.writer}]]
+											&nbsp;&nbsp;|&nbsp;&nbsp;[[${r.text}]]&nbsp;&nbsp;&nbsp;&nbsp;
+											<button
+												th:if="${session.loginMember != null and r.writer == session.loginMember.id}"
+												th:onclick="deleteFCommunityPostReply([[${r.no}]]);">삭제</button>
+										</td>
+										<td class="date"
+											th:text="${#dates.format(r.date, 'yyyy-MM-dd')}"></td>
+									</tr>
+									<tr th:if="${session.loginMember != null}">
+										<td class="icon"><img src="img/icon/reply_iconOrange.png"></td>
+										<td colspan="2" id="replyReg"><input autocomplete="off">
+											<button th:onclick="regFreeCommunityPostReply([[${c.no}]],[[${token}]], this);">등록</button>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<div id="regFreeRegCommentArea">
+				<input name="text" id="text" autocomplete="off">
+				<button
+					th:onclick="regFreeCommunityPostComment([[${freeCommuPostDetail.no}]], 1, [[${token}]]);">
+					등록</button>
+			</div>
+		</div>
+		<div id="goBackFreePostListDiv">
+			<button th:onclick="freeCommunityPageChange([[${curPage}]]);"
+				id="goBackFreePostListBtn">목록으로</button>
+		</div>
+
+		<div id="freePostUpdateArea" class="freePostPopupArea">
+			<form method="post" enctype="multipart/form-data"
+				id="freeCommuUpdateForm">
+				<input name="token" th:value="${token}" type="hidden"> 
+				<input name="post" th:value="${freeCommuPostDetail.no}" type="hidden">
+				<input name="no" th:value="${freeCommuPostDetail.no}" type="hidden">
+				<input name="curPage" th:value="${curPage}" type="hidden">
+				<div id="freePostPopup">
+					<div id="topSection" class="section">
+						<h2>글 수정</h2>
+						<div class="rightAlien">
+							<button id="closePopup" type="button">
+								<img alt="" src="img/icon/closeButton.png">
+							</button>
+						</div>
+					</div>
+					<div id="titleSection" class="section">
+						<div>
+							<div class="label">카테고리</div>
+							<select name="cate" th:if="${freeCommuPostDetail.cate == '일반'}">
+								<option value="일반" selected>일반</option>
+								<option value="인증">인증</option>
+								<option value="레시피추천">레시피 추천</option>
+								<option value="다이어트">다이어트</option>
+							</select> <select name="cate" th:if="${freeCommuPostDetail.cate == '인증'}">
+								<option value="일반">일반</option>
+								<option value="인증" selected>인증</option>
+								<option value="레시피추천">레시피 추천</option>
+								<option value="다이어트">다이어트</option>
+							</select> <select name="cate"
+								th:if="${freeCommuPostDetail.cate == '레시피추천'}">
+								<option value="일반">일반</option>
+								<option value="인증">인증</option>
+								<option value="레시피추천" selected>레시피 추천</option>
+								<option value="다이어트">다이어트</option>
+							</select> <select name="cate"
+								th:if="${freeCommuPostDetail.cate == '다이어트'}">
+								<option value="일반">일반</option>
+								<option value="인증">인증</option>
+								<option value="레시피추천">레시피 추천</option>
+								<option value="다이어트" selected>다이어트</option>
+							</select>
+						</div>
+						<input name="title" placeholder="제목" maxlength="80" th:value="${freeCommuPostDetail.title}" autocomplete="off">
+					</div>
+					<div id="textSection">
+						<textarea name="text" maxlength="800" placeholder="내용">[[${freeCommuPostDetailUpdateText}]]</textarea>
+					</div>
+					<div id="fileSection">
+						<table id="fileTbl">
+							<tr>
+								<td th:if="${freeCommuPostDetail.img1 != null}" class="fileTd"> 
+									<table>
+										<tr>
+											<td rowspan="2">
+												<img th:src="|community.photo/${freeCommuPostDetail.img1}|">
+											</td>
+											<td>파일 수정하기</td>
+										</tr>
+										<tr>
+											<td><input type="file" name="file1"></td>	
+										</tr>
+									</table>
+								</td>
+								<td th:unless="${freeCommuPostDetail.img1 != null}" class="fileTd">
+									<input type="file" name="file1" class="nullFileInput">
+								</td>
+								
+								<td th:if="${freeCommuPostDetail.img2 != null}" class="fileTd"> 
+									<table>
+										<tr>
+											<td rowspan="2">
+												<img th:src="|community.photo/${freeCommuPostDetail.img2}|">
+											</td>
+											<td>파일 수정하기</td>
+										</tr>
+										<tr>
+											<td><input type="file" name="file2"></td>	
+										</tr>
+									</table>
+								</td>
+								<td th:unless="${freeCommuPostDetail.img2 != null}" class="fileTd">
+									<input type="file" name="file2" class="nullFileInput">
+								</td>
+								
+								<td th:if="${freeCommuPostDetail.img3 != null}" class="fileTd"> 
+									<table>
+										<tr>
+											<td rowspan="2">
+												<img th:src="|community.photo/${freeCommuPostDetail.img3}|">
+											</td>
+											<td>파일 수정하기</td>
+										</tr>
+										<tr>
+											<td><input type="file" name="file3"></td>	
+										</tr>
+									</table>
+								</td>
+								<td th:unless="${freeCommuPostDetail.img3 != null}" class="fileTd">
+									<input type="file" name="file3" class="nullFileInput">
+								</td>
+								
+								<td th:if="${freeCommuPostDetail.img4 != null}" class="fileTd"> 
+									<table>
+										<tr>
+											<td rowspan="2">
+												<img th:src="|community.photo/${freeCommuPostDetail.img4}|">
+											</td>
+											<td>파일 수정하기</td>
+										</tr>
+										<tr>
+											<td><input type="file" name="file4"></td>	
+										</tr>
+									</table>
+								</td>
+								<td th:unless="${freeCommuPostDetail.img4 != null}" class="fileTd">
+									<input type="file" name="file4" class="nullFileInput">
+								</td>
+								
+								<td th:if="${freeCommuPostDetail.img5 != null}" class="fileTd"> 
+									<table>
+										<tr>
+											<td rowspan="2">
+												<img th:src="|community.photo/${freeCommuPostDetail.img5}|">
+											</td>
+											<td>파일 수정하기</td>
+										</tr>
+										<tr>
+											<td><input type="file" name="file5"></td>	
+										</tr>
+									</table>
+								</td>
+								<td th:unless="${freeCommuPostDetail.img5 != null}" class="fileTd">
+									<input type="file" name="file5" class="nullFileInput">
+								</td>
+							</tr>
+						</table>
+					</div>
+					<div>
+						<button type="button" id="freeCommuPostUpdateBtn">등록</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

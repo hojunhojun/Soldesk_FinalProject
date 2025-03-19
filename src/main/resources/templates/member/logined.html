@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<table id="loginedTbl">
+		<tr>
+			<td rowspan="2" align="center" class="loginedImgTd">
+				<img th:src="@{|member.photo/${session.loginMember.pphoto}}|">
+			</td>
+    		<td>
+        		<div class="loginedMiddle">
+            		<img class="badgeImg" th:src="@{|member.badge/${session.loginMember.bg}|}">
+            		<span class="welcomeText" th:text="|${session.loginMember.nick}님 환영합니다.|"></span>
+        		</div>
+    		</td>
+		</tr>
+		<tr>
+    		<td>
+        		<div class="loginedBottomTd">
+            		<div class="loginedBottomTd2" onclick="memberInfoGoCheck();">회원정보</div>
+            		<div class="loginedBottomTd2" onclick="logOut();">로그아웃</div>
+        		</div>
+    		</td>
+		</tr>
+	</table>
+</body>
+</html>

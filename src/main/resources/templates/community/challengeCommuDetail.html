@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var textarea = document.getElementById("postText");
+        var text = textarea.value;
+        
+        text = text.replace(/<br\s*\/?>/g, '\n');
+        
+        textarea.value = text;
+    });
+</script>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div id="challengeCommuDetailArea">
+		<div id="btnField" th:if="${session.loginMember != null and post.writer.id == session.loginMember.id}">
+    		<button id="commuPostUpdateGo">수정</button>
+   			<button id="commuPostDeleteGo"th:onclick="communityPostDelete([[${post.no}]], [[${curPage}]]);">삭제</button>
+		</div>
+		<div id="titleField" class="Field">
+			<div id="titleDiv">[[|제목 : ${post.title}|]]</div>
+			<div id="dateDiv" th:text="${#dates.format(post.date, 'yyyy.MM.dd/HH:mm')}"></div>
+		</div>
+		<div id="topField" class="field">
+			<div id="pphotoField">
+				<img th:src="@{|member.photo/${post.writer.pphoto}|}">			
+			</div>
+			<div id="writerField">
+				[[${post.writer.nick}]]
+			</div>
+			<div id="likeField">
+				<div id="likeTextField">추천 수&nbsp;&nbsp;
+					[[${post.like}]]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				</div>
+				<div id="likeImgField">
+					<button th:if="${isLike == true}" th:onclick="challengeCommunityUnLike([[${post.no}]], [[${token}]], [[${curPage}]]);">
+						<img src="img/icon/like.png">
+					</button>
+                	<button th:if="${isLike == false}" th:onclick="challengeCommunityLike([[${post.no}]], [[${token}]], [[${curPage}]]);">
+						<img src="img/icon/unlike.png">                
+                	</button>
+				</div>
+			</div>
+		</div>
+		<div id="ContentField" class="Field">
+			<div id="textField" th:utext="${post.text}"></div>
+			<div id="fileField">
+				<div>
+					<img th:src="@{|community.photo/${post.img1}|}">
+				</div>
+				<div th:if="${post.img2 != null}">
+					<img th:src="@{|community.photo/${post.img2}|}">				
+				</div>
+				<div th:if="${post.img3 != null}">
+					<img th:src="@{|community.photo/${post.img3}|}">				
+				</div>
+				<div th:if="${post.img4 != null}">
+					<img th:src="@{|community.photo/${post.img4}|}">				
+				</div>
+				<div th:if="${post.img5 != null}">
+					<img th:src="@{|community.photo/${post.img5}|}">				
+				</div>
+			</div>
+		</div>
+		<div id="commentField" class="Field">
+			<div id="challengeCommuCommentArea">
+				<div th:if="${postComment != null}" id="challengeCommuComments">
+					<table th:each="cpc : ${postComment}" class="commentTbl">
+						<tr>
+							<td style="width:5%;"class="writer" th:text="${cpc.writer}"></td>
+							<td style="width:55%"class="text">
+								|&nbsp;&nbsp;&nbsp;&nbsp;[[${cpc.text}]]</td>
+							<td style="width:20%"align="right" th:text="${#dates.format(cpc.date,'yyyy-MM-dd/HH:mm')}"></td>
+							<td style="width:10%"align="center" class="showcprInputTr" th:data-reply-no="${cpc.no}" th:if="${session.loginMember != null}">답글</td>
+							<td style="width:10%"align="center">
+								<span th:onclick="communityCommentDelete([[${cpc.no}]], [[${post.no}]], [[${curPage}]])" th:if="${session.loginMember != null and cpc.writer == session.loginMember.id}">삭제</span>
+							</td>
+						</tr>
+						<tr th:each="cpr : ${postReply}" th:if="${cpr != null and cpr.parNo == cpc.no}">
+							<td class="cprImgTd">
+								<img class="icon" src="img/icon/reply_iconOrange.png">
+							</td>
+							<td>[[${cpr.writer}]]
+								&nbsp;&nbsp;|&nbsp;&nbsp;[[${cpr.text}]]&nbsp;&nbsp;&nbsp;&nbsp;</td>
+							<td align="right" th:text="${#dates.format(cpr.date,'yyyy-MM-dd/HH:mm')}"></td>
+							<td align="center" colspan="2">
+								<span th:onclick="communityReplyDelete([[${cpr.no}]], [[${post.no}]], [[${curPage}]])" th:if="${session.loginMember != null and cpr.writer == session.loginMember.id}">삭제</span>
+							</td>
+						</tr>
+						<tr th:id="|cprInputTr-${cpc.no}|" data-reply-no="${cpc.no}" style="display:none;" th:if="${session.loginMember != null}">
+							<form action="challenge.community.reply.write">
+								<td class="cprImgTd">
+									<img class="icon" src="img/icon/reply_iconOrange.png">							
+								</td>
+								<td colspan="2" class="cprTextTd">[[${session.loginMember.id}]]
+									&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;<input name="text" required>
+								</td>
+								<td colspan="2" class="cprBtnTd" align="center">
+									<input name="token" th:value="${token}" type="hidden">
+									<input name="parNo" th:value="${cpc.no}" type="hidden">
+									<input name="post" th:value="${post.no}" type="hidden">
+									<input name="curPage" th:value=${curPage} type="hidden">
+									<button>작성</button>	
+								</td>
+							</form>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<div id="regChallengeRegCommentArea" th:if="${session.loginMember != null}">
+				<form action="challenge.community.comment.write">
+					<input name="token" th:value="${token}" type="hidden">
+					<input name="post" th:value="${post.no}" type="hidden">
+					<input name="curPage" th:value="${curPage}" type="hidden">
+					<input name="type" value="2" type="hidden">							
+					<span th:text="${session.loginMember.id}"></span>&nbsp;&nbsp;
+					<input class="commentWriteInput" name="text" required maxlength="100">&nbsp;&nbsp;
+					<button>쓰기</button>
+				</form>
+			</div>
+		</div>
+		<div id="goBackChallengePostListDiv">
+			<button th:onclick="communityPageChange([[${curPage}]]);" id="goBackChallengePostListBtn">
+				목록으로
+			</button>
+		</div>
+		<div id="challengePostUpdateArea" class="challengePostPopupArea">
+			<form id="challengeUpdateForm" method="post" enctype="multipart/form-data">
+				<input type="hidden" value="2" name="type">
+				<input id="challengeUpdateFormPostInput" type="hidden" name="post" th:value="${post.no}">
+				<input type="hidden" name="token" th:value="${token}">
+				<input name="curPage" th:value="${curPage}" type="hidden">
+				<div id="challengePostPopup">
+					<div id="topField" class="field">
+						<h2>글 수정</h2>
+						<div class="rightAlign">
+							<button id="challengeclosePopup" type="button">
+								<img src="img/icon/closeButton.png">
+							</button>
+						</div>
+					</div>
+					<div id="titleField" class="field">
+						<input name="title" placeholder="제목" maxlength="80" th:value="${post.title}" autocomplete="off">
+					</div>
+					<div id="textField">
+						<textarea id="postText" name="text" maxlength="800" placeholder="내용">[[${post.text}]]</textarea>
+					</div>
+					<div class="fileField">
+       					<div align="center">
+		       				<table id="fileFieldTbl">
+							    <tr>
+							        <td>
+							            <label class="file-label">
+							                파일 선택
+							                <input name="imgTemp2" type="file" accept="image/*" onchange="previewImage(this)">
+							            </label>
+							            <img class="preview-img" th:src="@{|community.photo/${post.img1}|}">
+							        </td>
+							        <td>
+							            <label class="file-label">
+							                파일 선택
+							                <input name="imgTemp3" type="file" accept="image/*" onchange="previewImage(this)">
+							            </label>
+							            <img class="preview-img" th:src="@{|community.photo/${post.img2}|}">
+							        </td>
+							        <td>
+							            <label class="file-label">
+							                파일 선택
+							                <input name="imgTemp4" type="file" accept="image/*" onchange="previewImage(this)">
+							            </label>
+							            <img class="preview-img" th:src="@{|community.photo/${post.img3}|}">
+							        </td>
+							        <td>
+							            <label class="file-label">
+							                파일 선택
+							                <input name="imgTemp5" type="file" accept="image/*" onchange="previewImage(this)">
+							            </label>
+							            <img class="preview-img" th:src="@{|community.photo/${post.img4}|}">
+							        </td>
+							        <td>
+							            <label class="file-label">
+							                파일 선택
+							                <input name="imgTemp6" type="file" accept="image/*" onchange="previewImage(this)">
+							            </label>
+							            <img class="preview-img" th:src="@{|community.photo/${post.img5}|}">
+							        </td>
+							    </tr>
+							</table>
+       					</div>
+       				</div>
+        			<div>
+        				<button type="button" id="challengeCommuUpdateFormBtn">글 수정하기</button>
+       				</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

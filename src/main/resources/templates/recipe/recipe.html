@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+    function setSort(sortType) {
+        // URL 변경 (페이지 이동)
+        location.href = `/recipe.go.sort?sortBy=${sortType}`;
+
+        // 현재 선택한 정렬 옵션을 LocalStorage에 저장
+        localStorage.setItem('selectedSort', sortType);
+    }
+
+    // 페이지 로드 시 저장된 정렬 옵션을 가져와 버튼에 적용
+    document.addEventListener("DOMContentLoaded", function() {
+        let selectedSort = localStorage.getItem('selectedSort');
+
+        if (selectedSort) {
+            document.getElementById(`sort-${selectedSort}`).classList.add('active');
+        } else {
+            document.getElementById('sort-rcpName').classList.add('active'); // 기본값 설정
+        }
+    });
+</script>
+</head>
+<body>
+	<div id="circleMenuArea">
+		<div class="circleMenu">
+			<a href="/recipe.go?category=밥"> <img alt="" src="img/icon/bap.png"><br>밥
+			</a>
+		</div>
+		<div class="circleMenu">
+			<a href="/recipe.go?category=국&찌개"> <img alt="" src="img/icon/jjige.png"><br>국&찌개
+			</a>
+		</div>
+		<div class="circleMenu">
+			<a href="/recipe.go?category=반찬"> <img alt="" src="img/icon/banchan.png"><br>반찬
+			</a>
+		</div>
+		<div class="circleMenu">
+			<a href="/recipe.go?category=스페셜"> <img alt="" src="img/icon/ramen2.png"><br>스페셜
+			</a>
+		</div>
+		<div class="circleMenu">
+			<a href="/recipe.go?category=후식"> <img alt="" src="img/icon/husik.png"><br>후식
+			</a>
+		</div>
+		<div class="circleMenu">
+			<a href="/recipe.go?category=기타"> <img alt="" src="img/icon/gita.png"><br>기타
+			</a>
+		</div>
+	</div>
+	<!-- 정확순(가나다순)으로 정렬 버튼 
+	<button onclick="location.href='/recipe.go.sort?sortBy=rcpName'">정확순</button>
+	<!-- 추천순으로 정렬 버튼
+	<button onclick="location.href='/recipe.go.sort?sortBy=rcpRec'">추천순</button>-->
+	<div class="search-container">
+    <div class="sort-buttons">
+        <button id="sort-rcpName" onclick="setSort('rcpName')">정확순</button>
+        <button id="sort-rcpRec" onclick="setSort('rcpRec')">추천순</button>
+    </div>
+
+    <form action="recipe.go" class="search-form">
+        <input name="searchName" id="SearchInput" placeholder="검색" autocomplete="off">
+        <button type="submit" id="SearchBtn">
+            <img src="img/icon/search.png" alt="검색">
+        </button>
+    </form>
+</div>
+	<div class="toft">
+    <div th:each="recipe : ${recipes}">
+        <a th:href="@{/recipe.go.{rcpId}(rcpId=${recipe.rcpId})}">
+            <table border="1" class="layout-table">
+                <tr>
+                    <td rowspan="3" class="photo-cell">
+                        <img th:src="${recipe.rcpMainphoto}" alt="Recipe Image" />
+                    </td>
+                    <td class="title" th:text="${recipe.rcpName}">Title</td>
+                    <td rowspan="2" class="recommendation" th:text="'추천수 : ' + ${recipe.rcpRec}">추천수</td>
+                </tr>
+            </table>
+        </a>
+    </div>
+</div>
+	<div>
+	    <ul class="pagination" style="display: flex; list-style-type: none; padding: 0;">
+	    	<!-- -10 페이지 버튼 -->
+	        <li th:classappend="${curPage < 11} ? 'disabled'" style="margin-right: 5px;">
+	            <!-- 페이지 변경 시 sortOrder를 포함시켜 추천순 상태를 유지 -->
+	            <a th:href="@{/recipe.go.change(page=${curPage - 10}, sortOrder=${sortOrder})}" aria-label="Previous">
+	                <span aria-hidden="true">&laquo;</span>
+	            </a>
+	        </li>
+	        <!-- 이전 페이지 버튼 -->
+	        <li th:classappend="${curPage == 1} ? 'disabled'" style="margin-right: 5px;">
+	            <!-- 페이지 변경 시 sortOrder를 포함시켜 추천순 상태를 유지 -->
+	            <a th:href="@{/recipe.go.change(page=${curPage - 1}, sortOrder=${sortOrder})}" aria-label="Previous">
+	                <span aria-hidden="true">이전</span>
+	            </a>
+	        </li>
+	
+	        <!-- 현재 페이지 기준으로 앞 뒤 10 페이지를 표시 -->
+	        <li th:each="i : ${#numbers.sequence(curPage - 10, curPage + 10)}"
+	            th:if="${i > 0 and i <= pageCount}"
+	            th:classappend="${i == curPage} ? 'active'" style="margin-right: 5px;">
+	            <!-- 페이지 변경 시 sortOrder를 포함시켜 추천순 상태를 유지 -->
+	            <a th:href="@{/recipe.go.change(page=${i}, sortOrder=${sortOrder})}" th:text="${i}"></a>
+	        </li>
+	
+	        <!-- 다음 페이지 버튼 -->
+	        <li th:classappend="${curPage == pageCount} ? 'disabled'" style="margin-right: 5px;">
+	            <!-- 페이지 변경 시 sortOrder를 포함시켜 추천순 상태를 유지 -->
+	            <a th:href="@{/recipe.go.change(page=${curPage + 1}, sortOrder=${sortOrder})}" aria-label="Next">
+	                <span aria-hidden="true">다음</span>
+	            </a>
+	        </li>
+	        <!-- +10 페이지 버튼 -->
+	        <li th:classappend="${curPage > pageCount - 10} ? 'disabled'" style="margin-right: 5px;">
+	            <!-- 페이지 변경 시 sortOrder를 포함시켜 추천순 상태를 유지 -->
+	            <a th:href="@{/recipe.go.change(page=${curPage + 10}, sortOrder=${sortOrder})}" aria-label="Next">
+	                <span aria-hidden="true">&raquo;</span>
+	            </a>
+	        </li>
+	    </ul>
+	</div>
+
+</body>
+</html>

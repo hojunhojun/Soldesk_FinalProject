@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div id="CSquiz">
+	 	<div class="quiz-progress">문제 진행 상황</div>
+		<div id="question">quiz</div>
+		<div id="choices">
+			<button>1</button>
+			<button>2</button>
+			<button>3</button>
+			<button>4</button>
+		</div>
+		<div class="nextPopUpArea">
+			<div class="nextPopUp">
+				<div class="quizNextArea">
+					<div>
+						<h1 id="ox">정답여부</h1>
+					</div>
+					<div id="correctAnswer">답</div>
+					<button id="next">다음</button>
+				</div>
+				<div class="quizResultArea">
+					<h1>퀴즈 종료</h1>
+					<h1 id="result">맞은 갯수</h1>
+					<button id="home">홈으로 가기</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="quiz-data">
+		<div th:each="quiz : ${pickQuiz}" th:data-question="${quiz.quiz}"
+			th:data-answer="${quiz.cor}"></div>
+	</div>
+</body>
+</html>
